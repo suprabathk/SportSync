@@ -1,10 +1,19 @@
 import { Navigate, createBrowserRouter } from "react-router-dom";
 import AuthPage from "../pages/auth";
-import SignInForm from "../pages/auth/SignInForm";
-import SignUpForm from "../pages/auth/SignUpForm";
+import SignIn from "../pages/auth/SignIn";
+import SignUp from "../pages/auth/SignUp";
+import ProtectedRoute from "./ProtectedRoute";
+import SignOut from "../pages/auth/SignOut";
 
 const router = createBrowserRouter([
-  { path: "/", element: <div className="text-green-700">Hi</div> },
+  {
+    path: "/",
+    element: (
+      <ProtectedRoute>
+        <div className="text-green-700">Hi</div>
+      </ProtectedRoute>
+    ),
+  },
   {
     path: "auth",
     element: <AuthPage />,
@@ -12,11 +21,15 @@ const router = createBrowserRouter([
       { index: true, element: <Navigate to="/auth/signup" replace /> },
       {
         path: "signin",
-        element: <SignInForm />,
+        element: <SignIn />,
       },
       {
         path: "signup",
-        element: <SignUpForm />,
+        element: <SignUp />,
+      },
+      {
+        path: "signout",
+        element: <SignOut />,
       },
     ],
   },

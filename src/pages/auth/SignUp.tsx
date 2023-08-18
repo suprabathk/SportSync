@@ -1,9 +1,51 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect } from "react";
+import { useForm, SubmitHandler } from "react-hook-form";
+import { Link, useNavigate } from "react-router-dom";
+import { API_ENDPOINT } from "../../config/constants";
 
-const SignUpForm: React.FC = () => {
+type Inputs = {
+  name: string;
+  email: string;
+  password: string;
+};
+
+const SignUp: React.FC = () => {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<Inputs>();
+  const navigate = useNavigate();
+
+  const onSubmit: SubmitHandler<Inputs> = async (data) => {
+    try {
+      const response = await fetch(`${API_ENDPOINT}/users`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
+      const JSONData = await response.json();
+      if (!response.ok) {
+        throw new Error("Sign-up failed");
+      }
+      console.log("Sign-up successful");
+      localStorage.setItem("authToken", JSONData.auth_token);
+      navigate("/");
+    } catch (error) {
+      console.error("Sign-up failed:", error);
+    }
+  };
+
+  useEffect(() => {
+    !!localStorage.getItem("authToken") && navigate("/");
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   return (
-    <div className="w-full md:w-[50%] bg-white px-12 md:px-24 flex flex-col items-start justify-center">
+    <form
+      onSubmit={handleSubmit(onSubmit)}
+      className="w-full md:w-[50%] bg-white px-12 md:px-24 flex flex-col items-start justify-center"
+    >
       <h2 className="font-space-grotesk font-bold text-5xl">
         Welcome to <br />
         <span className="text-blue-600">SportSync</span>
@@ -18,12 +60,13 @@ const SignUpForm: React.FC = () => {
         >
           Name
         </label>
+        {errors.name && <span className="text-red-500">Name is required</span>}
         <input
           type="text"
           id="name"
+          {...register("name", { required: true })}
           className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
           placeholder="John Doe"
-          required
         />
       </div>
       <div className="mb-6 w-full">
@@ -33,12 +76,15 @@ const SignUpForm: React.FC = () => {
         >
           Email address
         </label>
+        {errors.email && (
+          <span className="text-red-500">Email is required</span>
+        )}
         <input
           type="email"
           id="email"
+          {...register("email", { required: true })}
           className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
           placeholder="john.doe@company.com"
-          required
         />
       </div>
       <div className="mb-6 w-full">
@@ -48,12 +94,15 @@ const SignUpForm: React.FC = () => {
         >
           Set a password
         </label>
+        {errors.password && (
+          <span className="text-red-500">Password is required</span>
+        )}
         <input
           type="password"
           id="password"
+          {...register("password", { required: true })}
           className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
           placeholder="•••••••••"
-          required
         />
       </div>
       <button className="w-full md:w-fit bg-blue-600 text-white px-6 py-2 rounded-md hover:bg-blue-500 transition-colors">
@@ -68,8 +117,8 @@ const SignUpForm: React.FC = () => {
           Sign In
         </Link>
       </p>
-    </div>
+    </form>
   );
 };
 
-export default SignUpForm;
+export default SignUp;
