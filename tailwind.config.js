@@ -5,7 +5,12 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        'space-grotesk': ['Space Grotesk', 'sans-serif'],
+        'lexend-deca': ['Lexend Deca', 'sans-serif']
+      },
+    },
   },
   plugins: [],
 }
