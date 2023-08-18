@@ -26,12 +26,13 @@ const SignIn: React.FC = () => {
         body: JSON.stringify({ email, password }),
       });
 
-      const data = await response.json();
+      const JSONData = await response.json();
       if (!response.ok) {
         throw new Error("Sign-in failed");
       }
       console.log("Sign-in successful");
-      localStorage.setItem("authToken", data.token);
+      localStorage.setItem("authToken", JSONData.auth_token);
+      localStorage.setItem("userData", JSON.stringify(JSONData.user));
       navigate("/");
     } catch (error) {
       console.error("Sign-in failed:", error);
