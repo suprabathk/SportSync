@@ -1,6 +1,7 @@
 import { CalendarDaysIcon, MapPinIcon } from "@heroicons/react/20/solid";
 import { useMatchesState } from "../../../context/matches/context";
-import { Match } from "../../../types/types";
+import { MatchPreview } from "../../../types/types";
+import { Link } from "react-router-dom";
 
 const LiveGames = () => {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -23,8 +24,9 @@ const LiveGames = () => {
       )}
       <div className="flex overflow-x-auto gap-2 p-1 -mr-8">
         {matches &&
-          matches.reverse().map((match: Match) => (
-            <div
+          matches.reverse().map((match: MatchPreview) => (
+            <Link
+              to={`/match/${match.id}`}
               key={match.id}
               className={`flex-shrink-0 bg-gray-200 p-3 rounded-md outline-blue-300 ${
                 match.isRunning && "outline"
@@ -46,7 +48,7 @@ const LiveGames = () => {
                 <MapPinIcon className="w-4 h-4" />
                 <p>{match.location}</p>
               </div>
-            </div>
+            </Link>
           ))}
       </div>
     </div>

@@ -1,7 +1,7 @@
-import { Match } from "../../types/types";
+import { MatchPreview } from "../../types/types";
 
 export interface MatchesState {
-  matches: Match[];
+  matches: MatchPreview[];
   isLoading: boolean;
   isError: boolean;
   errorMessage: string;
@@ -9,7 +9,7 @@ export interface MatchesState {
 
 export type MatchesActions =
   | { type: "FETCH_MATCHES_REQUEST" }
-  | { type: "FETCH_MATCHES_SUCCESS"; payload: Match[] }
+  | { type: "FETCH_MATCHES_SUCCESS"; payload: MatchPreview[] }
   | { type: "FETCH_MATCHES_FAILURE"; payload: string };
 
 export const initialState: MatchesState = {

@@ -9,7 +9,7 @@ export type Team = {
   name: string;
 };
 
-export type Match = {
+export type MatchPreview = {
   id: number;
   endsAt: string;
   isRunning: boolean;
@@ -17,4 +17,19 @@ export type Match = {
   name: string;
   sportName: string;
   teams: Team[];
+};
+
+export type MatchDetails = {
+  id: number;
+  startsAt: string;
+  endsAt: string;
+  isRunning: boolean;
+  location: string;
+  name: string;
+  sportName: string;
+  teams: Team[];
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  score: any;
+  playingTeam: number;
+  story: string;
 };
