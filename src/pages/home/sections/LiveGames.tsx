@@ -17,7 +17,7 @@ const LiveGames = () => {
           {[...Array(10).keys()].map((id) => (
             <div
               key={id}
-              className={`flex-shrink-0 bg-slate-200 p-3 rounded-md outline-blue-300 h-28 w-60 animate-pulse`}
+              className={`flex-shrink-0 bg-slate-200 dark:bg-gray-800 p-3 rounded-md outline-blue-300 h-28 w-60 animate-pulse`}
             />
           ))}
         </div>
@@ -28,13 +28,13 @@ const LiveGames = () => {
             <Link
               to={`/match/${match.id}`}
               key={match.id}
-              className={`flex-shrink-0 bg-gray-200 p-3 rounded-md outline-blue-300 ${
+              className={`flex-shrink-0 bg-gray-200 dark:bg-gray-800 p-3 rounded-md outline-blue-300 dark:outline-white ${
                 match.isRunning && "outline"
               }`}
             >
               <div className="flex justify-between items-center mb-3 gap-6">
                 <p className="text-sm">{match.sportName}</p>
-                <div className="flex items-center text-sm text-gray-500 gap-1">
+                <div className="flex items-center text-sm text-gray-500 gap-1 dark:text-gray-300">
                   <CalendarDaysIcon className="w-4 h-4" />
                   <p>{new Date(match.endsAt).toDateString()}</p>
                 </div>
@@ -44,7 +44,7 @@ const LiveGames = () => {
                 <span>VS</span>
                 <span>{match.teams[1].name}</span>
               </div>
-              <div className="flex text-sm text-gray-500 gap-1 items-center mt-1">
+              <div className="flex text-sm text-gray-500 gap-1 items-center mt-1 dark:text-gray-300">
                 <MapPinIcon className="w-4 h-4" />
                 <p>{match.location}</p>
               </div>

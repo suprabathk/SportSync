@@ -25,7 +25,10 @@ const Appbar = () => {
 
   return (
     <>
-      <Disclosure as="nav" className="border-b border-slate-200">
+      <Disclosure
+        as="nav"
+        className="border-b border-slate-200 dark:bg-stone-950 dark:text-white"
+      >
         {() => (
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="flex h-16 items-center justify-between">
@@ -39,7 +42,7 @@ const Appbar = () => {
               <div className="flex ml-4 items-center md:ml-6">
                 <Menu as="div" className="relative ml-3">
                   <div>
-                    <Menu.Button className="rounded-full bg-white p-1 text-gray-700 hover:text-blue-600 transition-colors">
+                    <Menu.Button className="rounded-full bg-white p-1 text-gray-700 hover:text-blue-600 transition-colors dark:bg-slate-950 dark:text-white">
                       <UserCircleIcon className="h-6 w-6" aria-hidden="true" />
                     </Menu.Button>
                   </div>
@@ -52,7 +55,7 @@ const Appbar = () => {
                     leaveFrom="transform opacity-100 scale-100"
                     leaveTo="transform opacity-0 scale-95"
                   >
-                    <Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none p-2 divide-y">
+                    <Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none p-2 divide-y dark:bg-stone-950 border dark:border-white">
                       <div className="flex flex-col items-center justify-center my-2">
                         <span className="text-xl font-semibold">
                           {userData.name}
@@ -83,7 +86,7 @@ const Appbar = () => {
                       <div className="text-center py-2">
                         <Link
                           to="/auth/signout"
-                          className="text-black hover:text-red-500 transition-colors"
+                          className="text-black hover:text-red-500 transition-colors dark:text-white dark:hover:text-red-500"
                         >
                           Sign out
                         </Link>

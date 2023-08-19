@@ -8,7 +8,11 @@ function App() {
   const { theme } = useContext(ThemeContext);
 
   return (
-    <div className={`font-lexend-deca ${theme === "dark" ? "dark" : ""}`}>
+    <div
+      className={`font-lexend-deca ${
+        theme === "dark" ? "dark" : ""
+      } transition-colors`}
+    >
       <MatchesProvider>
         <RouterProvider router={router} />
       </MatchesProvider>

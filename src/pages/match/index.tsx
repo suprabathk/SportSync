@@ -57,16 +57,16 @@ const MatchModal = () => {
                 leaveFrom="opacity-100 scale-100"
                 leaveTo="opacity-0 scale-95"
               >
-                <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all">
+                <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all dark:bg-stone-950">
                   <Dialog.Title
                     as="h3"
-                    className="text-xl font-bold leading-6 text-gray-900"
+                    className="text-xl font-bold leading-6 text-gray-900 dark:text-white"
                   >
                     {match?.name}
                   </Dialog.Title>
-                  <div className="flex justify-between items-center mt-1 mb-3 gap-6">
+                  <div className="flex justify-between items-center mt-1 mb-3 gap-6 ">
                     <p className="text-sm">{match?.sportName}</p>
-                    <div className="text-gray-500 flex items-center gap-2">
+                    <div className="text-gray-500 flex items-center gap-2 dark:text-gray-200">
                       <div className="flex items-center text-sm gap-1">
                         <CalendarDaysIcon className="w-4 h-4" />
                         <p>
