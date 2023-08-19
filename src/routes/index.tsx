@@ -4,15 +4,17 @@ import SignIn from "../pages/auth/SignIn";
 import SignUp from "../pages/auth/SignUp";
 import ProtectedRoute from "./ProtectedRoute";
 import SignOut from "../pages/auth/SignOut";
+import HomeLayout from "../pages/home";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: (
       <ProtectedRoute>
-        <div className="text-green-700">Hi</div>
+        <HomeLayout />
       </ProtectedRoute>
     ),
+    children: [{ index: true, element: <></> }],
   },
   {
     path: "auth",
