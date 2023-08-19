@@ -31,12 +31,12 @@ const Appbar = () => {
             <div className="flex h-16 items-center justify-between">
               <div className="flex items-center">
                 <div className="flex-shrink-0">
-                  <span className="font-space-grotesk font-bold">
+                  <span className="font-space-grotesk text-lg font-bold">
                     SportSync
                   </span>
                 </div>
               </div>
-              <div className="hidden md:flex ml-4 items-center md:ml-6">
+              <div className="flex ml-4 items-center md:ml-6">
                 <Menu as="div" className="relative ml-3">
                   <div>
                     <Menu.Button className="rounded-full bg-white p-1 text-gray-700 hover:text-blue-600 transition-colors">
@@ -62,21 +62,21 @@ const Appbar = () => {
                         </span>
                       </div>
                       <div className="flex justify-between items-center py-2">
-                        <span className="font-normal">Dark mode: </span>
+                        <span className="font-normal text-md">Dark mode: </span>
                         <Switch
                           checked={enabled}
                           onChange={toggleTheme}
                           className={`${
                             enabled ? "bg-slate-400" : "bg-slate-700"
                           }
-              relative inline-flex h-[24px] w-[60px] shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus-visible:ring-2  focus-visible:ring-white focus-visible:ring-opacity-75`}
+              relative inline-flex h-[18px] w-[40px] shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus-visible:ring-2  focus-visible:ring-white focus-visible:ring-opacity-75`}
                         >
                           <span
                             aria-hidden="true"
                             className={`${
-                              enabled ? "translate-x-9" : "translate-x-0"
+                              enabled ? "translate-x-5" : "translate-x-0"
                             }
-                pointer-events-none inline-block h-[20px] w-[20px] transform rounded-full bg-white shadow-lg ring-0 transition duration-200 ease-in-out`}
+                pointer-events-none inline-block h-[14px] w-[14px] transform rounded-full bg-white shadow-lg ring-0 transition duration-200 ease-in-out`}
                           />
                         </Switch>
                       </div>
