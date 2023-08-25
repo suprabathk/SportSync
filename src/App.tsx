@@ -5,6 +5,7 @@ import { useContext } from "react";
 import { MatchesProvider } from "./context/matches/context";
 import { ArticlesProvider } from "./context/articles/context";
 import { SportsProvider } from "./context/sports/context";
+import { TeamsProvider } from "./context/teams/context";
 
 function App() {
   const { theme } = useContext(ThemeContext);
@@ -18,7 +19,9 @@ function App() {
       <MatchesProvider>
         <ArticlesProvider>
           <SportsProvider>
-            <RouterProvider router={router} />
+            <TeamsProvider>
+              <RouterProvider router={router} />
+            </TeamsProvider>
           </SportsProvider>
         </ArticlesProvider>
       </MatchesProvider>
