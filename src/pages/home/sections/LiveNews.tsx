@@ -27,10 +27,10 @@ const LiveNews = () => {
     errorMessage: teamsErrorMessage,
   } = teamsState;
 
-  const [activeSports, setActiveSports] = useState<number[]>([]);
+  const [activeSports, setActiveSports] = useState<string[]>([]);
   const [activeTeams, setActiveTeams] = useState<number[]>([]);
 
-  const toggleSport = (sport: number) => {
+  const toggleSport = (sport: string) => {
     if (activeSports.includes(sport)) {
       setActiveSports((activeSports) =>
         activeSports.filter((activeSport) => activeSport !== sport)
@@ -50,13 +50,6 @@ const LiveNews = () => {
     }
   };
 
-  const getSportId = (sportName: string) => {
-    const sportID: Sport = sports.find(
-      (sport: Sport) => sport.name === sportName
-    );
-    return sportID ? sportID.id : -1;
-  };
-
   return (
     <div>
       <p className="font-bold text-2xl mb-1">Live News</p>
@@ -64,9 +57,9 @@ const LiveNews = () => {
         <p className="text-md font-medium mb-1">Filter by sport:</p>
         <div className="overflow-x-auto flex gap-2 items-center mb-1 pb-1">
           {sports.map((sport: Sport) =>
-            activeSports.includes(sport.id) ? (
+            activeSports.includes(sport.name) ? (
               <div
-                onClick={() => toggleSport(sport.id)}
+                onClick={() => toggleSport(sport.name)}
                 key={sport.id}
                 className="flex-shrink-0 cursor-pointer flex items-center gap-1 bg-sky-700 rounded-lg px-2 py-1 text-white text-sm"
               >
@@ -75,7 +68,7 @@ const LiveNews = () => {
               </div>
             ) : (
               <div
-                onClick={() => toggleSport(sport.id)}
+                onClick={() => toggleSport(sport.name)}
                 key={sport.id}
                 className="flex-shrink-0 cursor-pointer flex items-center gap-1 border border-sky-600 rounded-lg px-2 py-1 text-sky-700 text-sm"
               >
@@ -93,7 +86,7 @@ const LiveNews = () => {
             .filter(
               (team: Team) =>
                 activeSports.length === 0 ||
-                activeSports.includes(getSportId(team.plays ? team.plays : ""))
+                activeSports.includes(team.plays ?? "")
             )
             .map((team: Team) =>
               activeTeams.includes(team.id) ? (
@@ -136,7 +129,7 @@ const LiveNews = () => {
             .filter(
               (article: ArticlePreview) =>
                 activeSports.length === 0 ||
-                activeSports.includes(article.sport.id)
+                activeSports.includes(article.sport.name)
             )
             .filter((article: ArticlePreview) => {
               let flag = false;

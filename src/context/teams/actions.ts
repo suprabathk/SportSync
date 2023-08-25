@@ -1,5 +1,5 @@
 import { API_ENDPOINT } from "../../config/constants";
-import { Sport, Team, UserPreferences } from "../../types/types";
+import { Team } from "../../types/types";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const fetchTeams = async (dispatch: any) => {
