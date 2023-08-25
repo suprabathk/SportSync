@@ -59,10 +59,10 @@ const LiveNews = () => {
 
   return (
     <div>
-      <p className="font-bold text-xl mb-3">Live News</p>
-      <div className="mb-4 custom-scrollbar">
-        <p className="text-md font-semibold mb-1">Filter by sport:</p>
-        <div className="overflow-x-auto flex gap-2 items-center mb-3 pb-1">
+      <p className="font-bold text-2xl mb-1">Live News</p>
+      <div className="mb-1 custom-scrollbar -mr-4 sm:-mr-6 lg:-mr-8">
+        <p className="text-md font-medium mb-1">Filter by sport:</p>
+        <div className="overflow-x-auto flex gap-2 items-center mb-1 pb-1">
           {sports.map((sport: Sport) =>
             activeSports.includes(sport.id) ? (
               <div
@@ -84,8 +84,8 @@ const LiveNews = () => {
           )}
         </div>
       </div>
-      <div className="mb-4 custom-scrollbar">
-        <p className="text-md font-semibold mb-1">Filter by team:</p>
+      <div className="mb-4 custom-scrollbar -mr-4 sm:-mr-6 lg:-mr-8">
+        <p className="text-md font-medium mb-1">Filter by team:</p>
         <div className="flex gap-2 items-center mb-3 overflow-x-auto pb-1">
           {teams
             .filter(
