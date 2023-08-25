@@ -39,6 +39,14 @@ const LiveNews = () => {
                 <p className="mb-4 text-sm text-neutral-600">
                   {article.summary}
                 </p>
+                <div className="text-xs text-neutral-500 mb-1">
+                  {article.teams.map((team, id) => (
+                    <span key={id}>
+                      <span>{team.name}</span>
+                      {article.teams.length !== id + 1 && " VS "}
+                    </span>
+                  ))}
+                </div>
                 <p className="text-xs text-neutral-500">
                   {new Date(article.date).toDateString()}
                 </p>

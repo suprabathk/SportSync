@@ -64,6 +64,14 @@ const ArticleModal = () => {
                     {article?.title}
                   </Dialog.Title>
                   <p className="mb-4 text-sm">{article?.summary}</p>
+                  <div className="text-sm text-white mb-1">
+                    {article?.teams.map((team, id) => (
+                      <span key={id}>
+                        <span>{team.name}</span>
+                        {article.teams.length !== id + 1 && " VS "}
+                      </span>
+                    ))}
+                  </div>
                   <div className="flex justify-between items-center mt-1 mb-3 gap-6 ">
                     <p className="text-sm">{article?.sport.name}</p>
                     <div className="flex items-center text-sm gap-1">
