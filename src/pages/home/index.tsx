@@ -20,10 +20,8 @@ const HomeLayout = () => {
     <>
       <Appbar />
       <main>
-        <div className="dark:bg-stone-950 h-screen dark:text-white">
-          <Dashboard />
-          <Outlet />
-        </div>
+        <Dashboard />
+        <Outlet />
       </main>
     </>
   );

@@ -16,14 +16,15 @@ const LiveNews = () => {
           [...Array(5).keys()].map((id) => (
             <div
               key={id}
-              className={`flex rounded-lg w-full bg-white border border-gray-200 shadow-md hover:shadow-xl transition-shadow dark:bg-neutral-700 h-24 animate-pulse duration-75`}
+              className={`flex rounded-lg w-full bg-white border border-gray-200 shadow-md hover:shadow-xl transition-shadow h-24 animate-pulse duration-75`}
             />
           ))}
         {articles &&
           articles.map((article: ArticlePreview) => (
             <Link
               to={`/article/${article.id}`}
-              className="flex rounded-lg bg-white border border-gray-200 shadow-md hover:shadow-xl transition-shadow dark:bg-neutral-700"
+              key={article.id}
+              className="flex rounded-lg bg-white border border-gray-200 shadow-md hover:shadow-xl transition-shadow"
             >
               <img
                 className="w-32 rounded-l-lg object-cover h-auto"
@@ -31,16 +32,14 @@ const LiveNews = () => {
                 alt="thumbnail"
               />
               <div className="flex flex-col justify-start p-6">
-                <p className="text-xs text-neutral-500 dark:text-neutral-300">
-                  {article.sport.name}
-                </p>
-                <h5 className="mt-2 text-xl font-semibold text-neutral-800 dark:text-neutral-50">
+                <p className="text-xs text-neutral-500">{article.sport.name}</p>
+                <h5 className="mt-2 text-xl font-semibold text-neutral-800">
                   {article.title}
                 </h5>
-                <p className="mb-4 text-sm text-neutral-600 dark:text-neutral-200">
+                <p className="mb-4 text-sm text-neutral-600">
                   {article.summary}
                 </p>
-                <p className="text-xs text-neutral-500 dark:text-neutral-300">
+                <p className="text-xs text-neutral-500">
                   {new Date(article.date).toDateString()}
                 </p>
               </div>
