@@ -1,4 +1,4 @@
-import { ArticlePreview, MatchPreview } from "../../../types/types";
+import { ArticlePreview } from "../../../types/types";
 import { useArticlesState } from "../../../context/articles/context";
 
 const LiveNews = () => {

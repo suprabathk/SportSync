@@ -17,11 +17,12 @@
   
 /* Handle */
 #games ::-webkit-scrollbar-thumb {
-    background: rgb(136, 169, 186);;
+    background: rgb(136, 169, 186);
     border-radius: 5px;
+
 }
   
 /* Handle on hover */
 #games ::-webkit-scrollbar-thumb:hover {
-    background: rgb(12 74 110);;
+    background: rgb(12 74 110);
 }

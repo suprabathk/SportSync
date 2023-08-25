@@ -20,7 +20,7 @@ const HomeLayout = () => {
     <>
       <Appbar />
       <main>
-        <div className="mx-auto max-w-7xl dark:bg-stone-950 h-screen dark:text-white">
+        <div className="dark:bg-stone-950 h-screen dark:text-white">
           <Dashboard />
           <Outlet />
         </div>
