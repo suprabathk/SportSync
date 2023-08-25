@@ -21,7 +21,7 @@ const LiveGames = () => {
             />
           ))}
         {matches &&
-          matches.reverse().map((match: MatchPreview) => (
+          matches.map((match: MatchPreview) => (
             <Link
               to={`/match/${match.id}`}
               key={match.id}

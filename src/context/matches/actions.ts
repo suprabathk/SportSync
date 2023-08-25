@@ -15,7 +15,7 @@ export const fetchMatches = async (dispatch: any) => {
     });
     const data = await response.json();
 
-    dispatch({ type: "FETCH_MATCHES_SUCCESS", payload: data.matches });
+    dispatch({ type: "FETCH_MATCHES_SUCCESS", payload: data.matches.reverse() });
   } catch (error) {
     console.log("Error fetching matches:", error);
     dispatch({
