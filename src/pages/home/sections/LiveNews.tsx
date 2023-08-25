@@ -1,5 +1,6 @@
 import { ArticlePreview } from "../../../types/types";
 import { useArticlesState } from "../../../context/articles/context";
+import { Link } from "react-router-dom";
 
 const LiveNews = () => {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -11,9 +12,19 @@ const LiveNews = () => {
       <p className="font-bold text-xl mb-3">Live News</p>
       {isError && <p className="text-red-500">{errorMessage}</p>}
       <div className="flex flex-col md:grid-cols-2 sm:grid-cols-1 gap-2 rounded-md">
+        {isLoading &&
+          [...Array(5).keys()].map((id) => (
+            <div
+              key={id}
+              className={`flex rounded-lg w-full bg-white border border-gray-200 shadow-md hover:shadow-xl transition-shadow dark:bg-neutral-700 h-24 animate-pulse duration-75`}
+            />
+          ))}
         {articles &&
           articles.map((article: ArticlePreview) => (
-            <div className="flex rounded-lg bg-white border border-gray-200 shadow-md hover:shadow-xl transition-shadow dark:bg-neutral-700">
+            <Link
+              to={`/article/${article.id}`}
+              className="flex rounded-lg bg-white border border-gray-200 shadow-md hover:shadow-xl transition-shadow dark:bg-neutral-700"
+            >
               <img
                 className="w-32 rounded-l-lg object-cover h-auto"
                 src={article.thumbnail}
@@ -33,7 +44,7 @@ const LiveNews = () => {
                   {new Date(article.date).toDateString()}
                 </p>
               </div>
-            </div>
+            </Link>
           ))}
       </div>
     </div>

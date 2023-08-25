@@ -6,6 +6,7 @@ import ProtectedRoute from "./ProtectedRoute";
 import SignOut from "../pages/auth/SignOut";
 import HomeLayout from "../pages/home";
 import MatchModal from "../pages/match";
+import ArticleModal from "../pages/article";
 
 const router = createBrowserRouter([
   {
@@ -24,6 +25,17 @@ const router = createBrowserRouter([
           {
             path: ":matchID",
             element: <MatchModal />,
+          },
+        ],
+      },
+
+      {
+        path: "article",
+        children: [
+          { index: true, element: <Navigate to="/" replace /> },
+          {
+            path: ":articleID",
+            element: <ArticleModal />,
           },
         ],
       },
