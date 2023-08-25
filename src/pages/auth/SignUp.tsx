@@ -49,7 +49,7 @@ const SignUp: React.FC = () => {
     >
       <h2 className="font-space-grotesk font-bold text-5xl">
         Welcome to <br />
-        <span className="text-blue-600">SportSync</span>
+        <span className="text-sky-600">SportSync</span>
       </h2>
       <p className="font-lexend-deca mt-3 mb-6 text-gray-600">
         Create an account.
@@ -66,7 +66,7 @@ const SignUp: React.FC = () => {
           type="text"
           id="name"
           {...register("name", { required: true })}
-          className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+          className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-sky-500 focus:border-sky-500 block w-full p-2.5"
           placeholder="John Doe"
         />
       </div>
@@ -84,7 +84,7 @@ const SignUp: React.FC = () => {
           type="email"
           id="email"
           {...register("email", { required: true })}
-          className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+          className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-sky-500 focus:border-sky-500 block w-full p-2.5"
           placeholder="john.doe@company.com"
         />
       </div>
@@ -102,17 +102,17 @@ const SignUp: React.FC = () => {
           type="password"
           id="password"
           {...register("password", { required: true })}
-          className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+          className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-sky-500 focus:border-sky-500 block w-full p-2.5"
           placeholder="•••••••••"
         />
       </div>
-      <button className="w-full md:w-fit bg-blue-600 text-white px-6 py-2 rounded-md hover:bg-blue-500 transition-colors">
+      <button className="w-full md:w-fit bg-sky-600 text-white px-6 py-2 rounded-md hover:bg-sky-700 transition-colors">
         Sign Up
       </button>
       <p className="font-lexend-deca mt-3 mb-6 text-gray-600">
         Already have an account?{" "}
         <Link
-          className="text-blue-600 hover:text-blue-400 hover:underline transition-colors"
+          className="text-sky-600 hover:text-sky-700 hover:underline transition-colors"
           to="/auth/signin"
         >
           Sign In

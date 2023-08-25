@@ -3,8 +3,8 @@ import MatchDay from "../../assets/illustrations/MatchDay.svg";
 
 const AuthInfo: React.FC = () => {
   return (
-    <div className="bg-blue-600 px-24 py-24 flex flex-col text-white gap-2 items-center">
-      <span className="bg-white rounded-full w-fit text-blue-600 px-2 py-1 text-xs self-start">
+    <div className="bg-sky-600 px-24 py-24 flex flex-col text-white gap-2 items-center">
+      <span className="bg-white rounded-full w-fit text-sky-600 px-2 py-1 text-xs self-start">
         Games, Matches and more
       </span>
       <h3 className="text-3xl font-semibold">
