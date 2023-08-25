@@ -59,7 +59,7 @@ const ArticleModal = () => {
                 <Dialog.Panel className="w-full max-w-2xl transform overflow-hidden rounded-2xl bg-sky-700 text-white p-6 text-left align-middle shadow-xl transition-all">
                   <Dialog.Title
                     as="h3"
-                    className="text-2xl font-bold leading-6 text-white"
+                    className="text-2xl font-bold leading-6 text-white mb-2"
                   >
                     {article?.title}
                   </Dialog.Title>
@@ -73,7 +73,7 @@ const ArticleModal = () => {
                     ))}
                   </div>
                   <div className="flex justify-between items-center mt-1 mb-3 gap-6 ">
-                    <p className="text-sm">{article?.sport.name}</p>
+                    <p className="text-sm font-bold">{article?.sport.name}</p>
                     <div className="flex items-center text-sm gap-1">
                       <CalendarDaysIcon className="w-4 h-4" />
                       <p>
