@@ -33,3 +33,18 @@ export type MatchDetails = {
   playingTeam: number;
   story: string;
 };
+
+
+export type ArticlePreview = {
+  id: number;
+  title: string;
+  thumbnail: string;
+  sport: {
+    id: number;
+    name: string;
+  };
+  date: string;
+  summary: string;
+  teams: Team[];
+  
+};

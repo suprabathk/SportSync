@@ -3,6 +3,7 @@ import router from "./routes";
 import { ThemeContext } from "./context/theme";
 import { useContext } from "react";
 import { MatchesProvider } from "./context/matches/context";
+import { ArticlesProvider } from "./context/articles/context";
 
 function App() {
   const { theme } = useContext(ThemeContext);
@@ -14,7 +15,9 @@ function App() {
       } transition-colors`}
     >
       <MatchesProvider>
-        <RouterProvider router={router} />
+        <ArticlesProvider>
+          <RouterProvider router={router} />
+        </ArticlesProvider>
       </MatchesProvider>
     </div>
   );

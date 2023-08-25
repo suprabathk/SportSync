@@ -3,3 +3,25 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+#games ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+  
+/* Track */
+#games ::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 5px;
+}
+  
+/* Handle */
+#games ::-webkit-scrollbar-thumb {
+    background: rgb(136, 169, 186);;
+    border-radius: 5px;
+}
+  
+/* Handle on hover */
+#games ::-webkit-scrollbar-thumb:hover {
+    background: rgb(12 74 110);;
+}
