@@ -1,6 +1,6 @@
 import { Fragment, useContext, useState } from "react";
 import { Disclosure, Menu, Switch, Transition } from "@headlessui/react";
-import { UserCircleIcon } from "@heroicons/react/24/outline";
+import { Cog6ToothIcon, UserCircleIcon } from "@heroicons/react/24/outline";
 import { ThemeContext } from "../context/theme";
 import { User } from "../types/types";
 import { Link } from "react-router-dom";
@@ -37,6 +37,9 @@ const Appbar = () => {
                 </div>
               </div>
               <div className="flex ml-4 items-center md:ml-6">
+                <Link to="/preferences">
+                  <Cog6ToothIcon className="h-6 w-6" />
+                </Link>
                 <Menu as="div" className="relative ml-3">
                   <div>
                     <Menu.Button className="rounded-full p-1 text-white transition-colors">

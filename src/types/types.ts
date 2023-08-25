@@ -67,3 +67,8 @@ export type ArticleDetails = {
   content: string;
   teams: Team[];
 }
+
+export type UserPreferences = {
+  sports: number[],
+  teams: number[]
+}

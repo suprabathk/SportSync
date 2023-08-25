@@ -7,6 +7,7 @@ import SignOut from "../pages/auth/SignOut";
 import HomeLayout from "../pages/home";
 import MatchModal from "../pages/match";
 import ArticleModal from "../pages/article";
+import PreferencesModal from "../pages/preferences";
 
 const router = createBrowserRouter([
   {
@@ -28,7 +29,6 @@ const router = createBrowserRouter([
           },
         ],
       },
-
       {
         path: "article",
         children: [
@@ -38,6 +38,10 @@ const router = createBrowserRouter([
             element: <ArticleModal />,
           },
         ],
+      },
+      {
+        path: "preferences",
+        element: <PreferencesModal />,
       },
     ],
   },
