@@ -60,7 +60,7 @@ const MatchModal = () => {
                 <Dialog.Panel className="w-full max-w-2xl transform overflow-hidden rounded-2xl bg-sky-700 text-white p-6 text-left align-middle shadow-xl transition-all">
                   <Dialog.Title
                     as="h3"
-                    className="text-xl font-bold leading-6 text-white"
+                    className="text-2xl font-bold leading-6 text-white"
                   >
                     {match?.name}
                   </Dialog.Title>
