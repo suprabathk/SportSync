@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import { API_ENDPOINT } from "../../config/constants";
@@ -16,16 +16,21 @@ const SignUp: React.FC = () => {
     formState: { errors },
   } = useForm<Inputs>();
   const navigate = useNavigate();
+  const [signUpErrors, setSignUpErrors] = useState<string[]>([]);
+  const [loading, setLoading] = useState(false);
 
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
     try {
+      setLoading(true);
       const response = await fetch(`${API_ENDPOINT}/users`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data),
       });
       const JSONData = await response.json();
+      setLoading(false);
       if (!response.ok) {
+        setSignUpErrors(JSONData.errors);
         throw new Error("Sign-up failed");
       }
       console.log("Sign-up successful");
@@ -51,9 +56,16 @@ const SignUp: React.FC = () => {
         Welcome to <br />
         <span className="text-sky-600">SportSync</span>
       </h2>
-      <p className="font-lexend-deca mt-3 mb-6 text-gray-600">
+      <p className="font-lexend-deca mt-3 mb-3 text-gray-600">
         Create an account.
       </p>
+      <div className="mb-3">
+        {signUpErrors.map((err, id) => (
+          <span className="text-red-500" key={id}>
+            {err}
+          </span>
+        ))}
+      </div>
       <div className="mb-6 w-full">
         <label
           htmlFor="name"
@@ -107,7 +119,7 @@ const SignUp: React.FC = () => {
         />
       </div>
       <button className="w-full md:w-fit bg-sky-600 text-white px-6 py-2 rounded-md hover:bg-sky-700 transition-colors">
-        Sign Up
+        {loading ? "Signing up..." : "Sign up"}
       </button>
       <p className="font-lexend-deca mt-3 mb-6 text-gray-600">
         Already have an account?{" "}

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import { API_ENDPOINT } from "../../config/constants";
@@ -10,6 +10,8 @@ type Inputs = {
 
 const SignIn: React.FC = () => {
   const navigate = useNavigate();
+  const [signInErrors, setSignInErrors] = useState<string[]>([]);
+  const [loading, setLoading] = useState(false);
   const {
     register,
     handleSubmit,
@@ -20,14 +22,16 @@ const SignIn: React.FC = () => {
     const { email, password } = data;
 
     try {
+      setLoading(true);
       const response = await fetch(`${API_ENDPOINT}/users/sign_in`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, password }),
       });
-
       const JSONData = await response.json();
+      setLoading(false);
       if (!response.ok) {
+        setSignInErrors(JSONData.errors);
         throw new Error("Sign-in failed");
       }
       console.log("Sign-in successful");
@@ -53,9 +57,16 @@ const SignIn: React.FC = () => {
         Welcome back to <br />
         <span className="text-sky-600">SportSync</span>
       </h2>
-      <p className="font-lexend-deca mt-3 mb-6 text-gray-600">
+      <p className="font-lexend-deca mt-3 mb-3 text-gray-600">
         Sign in to your account.
       </p>
+      <div className="mb-3">
+        {signInErrors.map((err, id) => (
+          <span className="text-red-500" key={id}>
+            {err}
+          </span>
+        ))}
+      </div>
       <div className="mb-6 w-full">
         <label
           htmlFor="email"
@@ -96,7 +107,7 @@ const SignIn: React.FC = () => {
         type="submit"
         className="w-full md:w-fit bg-sky-600 text-white px-6 py-2 rounded-md hover:bg-sky-700 transition-colors"
       >
-        Sign In
+        {loading ? "Signing in..." : "Sign in"}
       </button>
       <p className="font-lexend-deca mt-3 mb-6 text-gray-600">
         Don't have an account?{" "}
