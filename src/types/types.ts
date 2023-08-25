@@ -12,6 +12,7 @@ export type Sport = {
 export type Team = {
   id: number;
   name: string;
+  plays?: string;
 };
 
 export type MatchPreview = {

@@ -9,7 +9,7 @@ const LiveGames = () => {
   const { matches, isLoading, isError, errorMessage } = state;
 
   return (
-    <div id="games">
+    <div className="custom-scrollbar">
       <p className="font-bold text-xl mb-3 text-white">Live Games</p>
       {isError && <p className="text-red-500">{errorMessage}</p>}
       <div className="flex overflow-x-auto gap-2 pb-1 rounded-l-md">

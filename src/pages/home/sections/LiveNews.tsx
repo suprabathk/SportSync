@@ -50,12 +50,19 @@ const LiveNews = () => {
     }
   };
 
+  const getSportId = (sportName: string) => {
+    const sportID: Sport = sports.find(
+      (sport: Sport) => sport.name === sportName
+    );
+    return sportID ? sportID.id : -1;
+  };
+
   return (
     <div>
       <p className="font-bold text-xl mb-3">Live News</p>
-      <div className="mb-4">
+      <div className="mb-4 custom-scrollbar">
         <p className="text-md font-semibold mb-1">Filter by sport:</p>
-        <div className="overflow-x-auto flex gap-2 items-center mb-3">
+        <div className="overflow-x-auto flex gap-2 items-center mb-3 pb-1">
           {sports.map((sport: Sport) =>
             activeSports.includes(sport.id) ? (
               <div
@@ -77,28 +84,34 @@ const LiveNews = () => {
           )}
         </div>
       </div>
-      <div className="mb-4">
+      <div className="mb-4 custom-scrollbar">
         <p className="text-md font-semibold mb-1">Filter by team:</p>
-        <div className="flex gap-2 items-center mb-3 overflow-x-auto">
-          {teams.map((team: Team) =>
-            activeTeams.includes(team.id) ? (
-              <div
-                onClick={() => toggleTeam(team.id)}
-                className="flex-shrink-0 cursor-pointer flex items-center gap-1 bg-sky-700 rounded-lg px-2 py-1 text-white text-sm"
-              >
-                <span className="bg-white rounded-full p-1.5" />
-                <span>{team.name}</span>
-              </div>
-            ) : (
-              <div
-                onClick={() => toggleTeam(team.id)}
-                className="flex-shrink-0 cursor-pointer flex items-center gap-1 border border-sky-600 rounded-lg px-2 py-1 text-sky-700 text-sm"
-              >
-                <span className="bg-sky-700 rounded-full p-1.5" />
-                <span>{team.name}</span>
-              </div>
+        <div className="flex gap-2 items-center mb-3 overflow-x-auto pb-1">
+          {teams
+            .filter(
+              (team: Team) =>
+                activeSports.length === 0 ||
+                activeSports.includes(getSportId(team.plays ? team.plays : ""))
             )
-          )}
+            .map((team: Team) =>
+              activeTeams.includes(team.id) ? (
+                <div
+                  onClick={() => toggleTeam(team.id)}
+                  className="flex-shrink-0 cursor-pointer flex items-center gap-1 bg-sky-700 rounded-lg px-2 py-1 text-white text-sm"
+                >
+                  <span className="bg-white rounded-full p-1.5" />
+                  <span>{team.name}</span>
+                </div>
+              ) : (
+                <div
+                  onClick={() => toggleTeam(team.id)}
+                  className="flex-shrink-0 cursor-pointer flex items-center gap-1 border border-sky-600 rounded-lg px-2 py-1 text-sky-700 text-sm"
+                >
+                  <span className="bg-sky-700 rounded-full p-1.5" />
+                  <span>{team.name}</span>
+                </div>
+              )
+            )}
         </div>
       </div>
       {isArticlesError && (
