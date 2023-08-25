@@ -4,6 +4,11 @@ export type User = {
   email: string;
 };
 
+export type Sport = {
+  id: number;
+  name: string;
+}
+
 export type Team = {
   id: number;
   name: string;
