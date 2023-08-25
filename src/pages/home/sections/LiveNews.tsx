@@ -67,6 +67,7 @@ const LiveNews = () => {
             activeSports.includes(sport.id) ? (
               <div
                 onClick={() => toggleSport(sport.id)}
+                key={sport.id}
                 className="flex-shrink-0 cursor-pointer flex items-center gap-1 bg-sky-700 rounded-lg px-2 py-1 text-white text-sm"
               >
                 <span className="bg-white rounded-full p-1.5" />
@@ -75,6 +76,7 @@ const LiveNews = () => {
             ) : (
               <div
                 onClick={() => toggleSport(sport.id)}
+                key={sport.id}
                 className="flex-shrink-0 cursor-pointer flex items-center gap-1 border border-sky-600 rounded-lg px-2 py-1 text-sky-700 text-sm"
               >
                 <span className="bg-sky-700 rounded-full p-1.5" />
@@ -97,6 +99,7 @@ const LiveNews = () => {
               activeTeams.includes(team.id) ? (
                 <div
                   onClick={() => toggleTeam(team.id)}
+                  key={team.id}
                   className="flex-shrink-0 cursor-pointer flex items-center gap-1 bg-sky-700 rounded-lg px-2 py-1 text-white text-sm"
                 >
                   <span className="bg-white rounded-full p-1.5" />
@@ -105,6 +108,7 @@ const LiveNews = () => {
               ) : (
                 <div
                   onClick={() => toggleTeam(team.id)}
+                  key={team.id}
                   className="flex-shrink-0 cursor-pointer flex items-center gap-1 border border-sky-600 rounded-lg px-2 py-1 text-sky-700 text-sm"
                 >
                   <span className="bg-sky-700 rounded-full p-1.5" />
