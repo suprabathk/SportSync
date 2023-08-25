@@ -1,8 +1,10 @@
 import { API_ENDPOINT } from "../../config/constants";
+import { Sport, UserPreferences } from "../../types/types";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const fetchSports = async (dispatch: any) => {
   const token = localStorage.getItem("authToken") ?? "";
+  const userPreferences: UserPreferences = JSON.parse(localStorage.getItem("userData") ?? "").preferences;
 
   try {
     dispatch({ type: "FETCH_SPORTS_REQUEST" });
@@ -14,8 +16,9 @@ export const fetchSports = async (dispatch: any) => {
       },
     });
     const data = await response.json();
+    const filteredBySportData = data.sports.filter((sport: Sport)=>userPreferences.sports.includes(sport.name));
 
-    dispatch({ type: "FETCH_SPORTS_SUCCESS", payload: data.sports });
+    dispatch({ type: "FETCH_SPORTS_SUCCESS", payload: filteredBySportData });
   } catch (error) {
     console.log("Error fetching sports:", error);
     dispatch({

@@ -3,11 +3,19 @@ import { Fragment, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { API_ENDPOINT } from "../../config/constants";
 import { Sport, Team, UserPreferences } from "../../types/types";
-import { useSportsState } from "../../context/sports/context";
-import { useTeamsState } from "../../context/teams/context";
 import { BookmarkIcon } from "@heroicons/react/24/solid";
+import { useArticlesDispatch } from "../../context/articles/context";
+import { useMatchesDispatch } from "../../context/matches/context";
+import { useSportsDispatch } from "../../context/sports/context";
+import { useTeamsDispatch } from "../../context/teams/context";
+import { fetchArticles } from "../../context/articles/actions";
+import { fetchMatches } from "../../context/matches/actions";
+import { fetchSports } from "../../context/sports/actions";
+import { fetchTeams } from "../../context/teams/actions";
 
 const PreferencesModal = () => {
+  const [sports, setSports] = useState<Sport[]>([]);
+  const [teams, setTeams] = useState<Team[]>([]);
   const [userPreferences, setUserPreferences] = useState<UserPreferences>({
     sports: [],
     teams: [],
@@ -15,18 +23,10 @@ const PreferencesModal = () => {
   const [isOpen, setIsOpen] = useState(false);
   const navigate = useNavigate();
 
-  const sportsState: any = useSportsState();
-  const teamsState: any = useTeamsState();
-  const {
-    sports,
-    isError: isSportsError,
-    errorMessage: sportsErrorMessage,
-  } = sportsState;
-  const {
-    teams,
-    isError: isTeamsError,
-    errorMessage: teamsErrorMessage,
-  } = teamsState;
+  const matchesDispatch = useMatchesDispatch();
+  const articlesDispatch = useArticlesDispatch();
+  const sportsDispatch = useSportsDispatch();
+  const teamsDispatch = useTeamsDispatch();
 
   function closeModal() {
     setIsOpen(false);
@@ -35,7 +35,39 @@ const PreferencesModal = () => {
 
   const token = localStorage.getItem("authToken") ?? "";
 
-  const toggleSport = (sport: number) => {
+  const fetchAllTeams = async () => {
+    try {
+      const response = await fetch(`${API_ENDPOINT}/teams`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      const data = await response.json();
+      setTeams(data);
+    } catch (error) {
+      console.log("Error fetching teams:", error);
+    }
+  };
+
+  const fetchAllSports = async () => {
+    try {
+      const response = await fetch(`${API_ENDPOINT}/sports`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      const data = await response.json();
+      setSports(data.sports);
+    } catch (error) {
+      console.log("Error fetching sports:", error);
+    }
+  };
+
+  const toggleSport = (sport: string) => {
     if (userPreferences.sports.includes(sport)) {
       setUserPreferences((userPreferences) => {
         return {
@@ -89,8 +121,6 @@ const PreferencesModal = () => {
   };
 
   const updatePreferences = async () => {
-    console.log(userPreferences);
-
     const response = await fetch(`${API_ENDPOINT}/user/preferences`, {
       method: "PATCH",
       headers: {
@@ -109,17 +139,16 @@ const PreferencesModal = () => {
       preferences: data.preferences,
     };
     localStorage.setItem("userData", JSON.stringify(updatedUserData));
+    fetchMatches(matchesDispatch);
+    fetchArticles(articlesDispatch);
+    fetchSports(sportsDispatch);
+    fetchTeams(teamsDispatch);
     navigate("/");
   };
 
-  const getSportId = (sportName: string) => {
-    const sportID: Sport = sports.find(
-      (sport: Sport) => sport.name === sportName
-    );
-    return sportID ? sportID.id : -1;
-  };
-
   useEffect(() => {
+    fetchAllSports();
+    fetchAllTeams();
     fetchPreferences();
   }, []);
 
@@ -170,20 +199,14 @@ const PreferencesModal = () => {
                     Select your favourite sports and teams for tailored feed.
                   </p>
                   <div className="mt-4 bg-white -m-6 p-6 text-black">
-                    {isSportsError && (
-                      <p className="text-red-500">{sportsErrorMessage}</p>
-                    )}
-                    {isTeamsError && (
-                      <p className="text-red-500">{teamsErrorMessage}</p>
-                    )}
                     <p className="font-medium text-lg mb-1">
                       Select your favorite sports
                     </p>
                     <div className="flex items-center gap-2 flex-wrap mb-3">
                       {sports.map((sport: Sport) =>
-                        userPreferences.sports.includes(sport.id) ? (
+                        userPreferences.sports.includes(sport.name) ? (
                           <div
-                            onClick={() => toggleSport(sport.id)}
+                            onClick={() => toggleSport(sport.name)}
                             key={sport.id}
                             className="flex-shrink-0 cursor-pointer flex items-center gap-1 bg-sky-700 rounded-lg px-2 py-1 text-white text-sm"
                           >
@@ -192,7 +215,7 @@ const PreferencesModal = () => {
                           </div>
                         ) : (
                           <div
-                            onClick={() => toggleSport(sport.id)}
+                            onClick={() => toggleSport(sport.name)}
                             key={sport.id}
                             className="flex-shrink-0 cursor-pointer flex items-center gap-1 border border-sky-600 rounded-lg px-2 py-1 text-sky-700 text-sm"
                           >
@@ -210,9 +233,7 @@ const PreferencesModal = () => {
                         .filter(
                           (team: Team) =>
                             userPreferences.sports.length === 0 ||
-                            userPreferences.sports.includes(
-                              getSportId(team.plays ? team.plays : "")
-                            )
+                            userPreferences.sports.includes(team.plays ?? "")
                         )
                         .map((team: Team) =>
                           userPreferences.teams.includes(team.id) ? (
