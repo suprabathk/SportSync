@@ -116,7 +116,15 @@ const PreferencesModal = () => {
       },
     });
     const data = await response.json();
-    setUserPreferences(data.preferences);
+    setUserPreferences(
+      Object.keys(data.preferences).includes("sports") &&
+        Object.keys(data.preferences).includes("teams")
+        ? data.preferences
+        : {
+            sports: [],
+            teams: [],
+          }
+    );
     setIsOpen(true);
   };
 
