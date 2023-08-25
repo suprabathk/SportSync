@@ -93,6 +93,14 @@ const Appbar = () => {
                           Sign out
                         </Link>
                       </div>
+                      <div className="text-center py-2">
+                        <Link
+                          to="/reset-password"
+                          className="text-black hover:text-sky-600 transition-colors"
+                        >
+                          Reset password
+                        </Link>
+                      </div>
                     </Menu.Items>
                   </Transition>
                 </Menu>
