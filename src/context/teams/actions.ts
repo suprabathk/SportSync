@@ -1,10 +1,11 @@
 import { API_ENDPOINT } from "../../config/constants";
-import { Team, UserPreferences } from "../../types/types";
+import { Sport, Team, UserPreferences } from "../../types/types";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const fetchTeams = async (dispatch: any) => {
   const token = localStorage.getItem("authToken") ?? "";
-  const userPreferences: UserPreferences = JSON.parse(localStorage.getItem("userData") ?? "").preferences;
+  const userPreferedSports: string[] = JSON.parse(localStorage.getItem("userData") ?? "").preferences.sports ?? [];
+  const userPreferedTeams: number[] = JSON.parse(localStorage.getItem("userData") ?? "").preferences.teams ?? [];
 
   try {
     dispatch({ type: "FETCH_TEAMS_REQUEST" });
@@ -16,7 +17,7 @@ export const fetchTeams = async (dispatch: any) => {
       },
     });
     const data = await response.json();
-    const filteredByTeamData = data.filter((team: Team)=>userPreferences.teams.includes(team.id));
+    const filteredByTeamData = data.filter((team: Team)=>userPreferedSports.length===0 || userPreferedSports.includes(team.plays??"") || userPreferedTeams.includes(team.id));
 
     dispatch({ type: "FETCH_TEAMS_SUCCESS", payload: filteredByTeamData });
   } catch (error) {
