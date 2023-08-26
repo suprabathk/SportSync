@@ -105,12 +105,21 @@ const SignIn: React.FC = () => {
           placeholder="•••••••••"
         />
       </div>
-      <button
-        type="submit"
-        className="w-full md:w-fit bg-sky-600 text-white px-6 py-2 rounded-md hover:bg-sky-700 transition-colors"
-      >
-        {loading ? "Signing in..." : "Sign in"}
-      </button>
+      <div className="flex gap-2 items-center">
+        <button
+          type="submit"
+          className="w-full md:w-fit bg-sky-600 text-white px-6 py-2 rounded-md hover:bg-sky-700 transition-colors"
+        >
+          {loading ? "Signing in..." : "Sign in"}
+        </button>
+        <span>or</span>
+        <Link
+          className="text-sky-600 hover:text-sky-700 hover:underline transition-colors"
+          to="/"
+        >
+          Continue as guest
+        </Link>
+      </div>
       <p className="font-lexend-deca mt-3 mb-6 text-gray-600">
         Don't have an account?{" "}
         <Link
