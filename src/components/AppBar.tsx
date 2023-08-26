@@ -8,9 +8,10 @@ import { Link } from "react-router-dom";
 const Appbar = () => {
   const { theme, setTheme } = useContext(ThemeContext);
   const [enabled, setEnabled] = useState(theme === "dark");
+  const isAuth = !!localStorage.getItem("authToken");
 
   const userDataString = localStorage.getItem("userData");
-  const userData: User = JSON.parse(userDataString ? userDataString : "");
+  const userData: User = JSON.parse(userDataString ? userDataString : "{}");
 
   const toggleTheme = () => {
     let newTheme = "";
@@ -31,15 +32,17 @@ const Appbar = () => {
             <div className="flex h-16 items-center justify-between">
               <div className="flex items-center">
                 <div className="flex-shrink-0">
-                  <span className="font-space-grotesk text-lg font-bold">
+                  <Link to="/" className="font-space-grotesk text-lg font-bold">
                     SportSync
-                  </span>
+                  </Link>
                 </div>
               </div>
               <div className="flex ml-4 items-center md:ml-6">
-                <Link to="/preferences">
-                  <Cog6ToothIcon className="h-6 w-6" />
-                </Link>
+                {isAuth && (
+                  <Link to="/preferences">
+                    <Cog6ToothIcon className="h-6 w-6" />
+                  </Link>
+                )}
                 <Menu as="div" className="relative ml-3">
                   <div>
                     <Menu.Button className="rounded-full p-1 text-white transition-colors">
@@ -58,10 +61,10 @@ const Appbar = () => {
                     <Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none p-2 divide-y">
                       <div className="flex flex-col items-center justify-center my-2">
                         <span className="text-xl font-semibold text-black">
-                          {userData.name}
+                          {userData.name ?? "Guest"}
                         </span>
                         <span className="text-sm text-gray-500">
-                          {userData.email}
+                          {userData.email ?? ""}
                         </span>
                       </div>
                       <div className="flex justify-between items-center py-2">
@@ -85,22 +88,45 @@ const Appbar = () => {
                           />
                         </Switch>
                       </div>
-                      <div className="text-center py-2">
-                        <Link
-                          to="/auth/signout"
-                          className="text-black hover:text-red-500 transition-colors"
-                        >
-                          Sign out
-                        </Link>
-                      </div>
-                      <div className="text-center py-2">
-                        <Link
-                          to="/reset-password"
-                          className="text-black hover:text-sky-600 transition-colors"
-                        >
-                          Reset password
-                        </Link>
-                      </div>
+                      {isAuth ? (
+                        <>
+                          <div className="text-center py-2">
+                            <Link
+                              to="/auth/signout"
+                              className="text-black hover:text-red-500 transition-colors"
+                            >
+                              Sign out
+                            </Link>
+                          </div>
+                          <div className="text-center py-2">
+                            <Link
+                              to="/reset-password"
+                              className="text-black hover:text-sky-600 transition-colors"
+                            >
+                              Reset password
+                            </Link>
+                          </div>
+                        </>
+                      ) : (
+                        <>
+                          <div className="text-center py-2">
+                            <Link
+                              to="/auth/signin"
+                              className="text-black hover:text-sky-500 transition-colors"
+                            >
+                              Sign in
+                            </Link>
+                          </div>
+                          <div className="text-center py-2">
+                            <Link
+                              to="/auth/signup"
+                              className="text-black hover:text-sky-600 transition-colors"
+                            >
+                              Sign up
+                            </Link>
+                          </div>
+                        </>
+                      )}
                     </Menu.Items>
                   </Transition>
                 </Menu>

@@ -13,11 +13,7 @@ import ResetPassword from "../pages/auth/ResetPassword";
 const router = createBrowserRouter([
   {
     path: "/",
-    element: (
-      <ProtectedRoute>
-        <HomeLayout />
-      </ProtectedRoute>
-    ),
+    element: <HomeLayout />,
     children: [
       { index: true, element: <></> },
       {
@@ -42,11 +38,19 @@ const router = createBrowserRouter([
       },
       {
         path: "preferences",
-        element: <PreferencesModal />,
+        element: (
+          <ProtectedRoute>
+            <PreferencesModal />
+          </ProtectedRoute>
+        ),
       },
       {
         path: "reset-password",
-        element: <ResetPassword />,
+        element: (
+          <ProtectedRoute>
+            <ResetPassword />
+          </ProtectedRoute>
+        ),
       },
     ],
   },

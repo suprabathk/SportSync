@@ -3,17 +3,15 @@ import { Team } from "../../types/types";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const fetchTeams = async (dispatch: any) => {
-  const token = localStorage.getItem("authToken") ?? "";
-  const userPreferedSports: string[] = JSON.parse(localStorage.getItem("userData") ?? "").preferences.sports ?? [];
-  const userPreferedTeams: number[] = JSON.parse(localStorage.getItem("userData") ?? "").preferences.teams ?? [];
+  const userPreferedSports: string[] = JSON.parse(localStorage.getItem("userData") ?? JSON.stringify({"preferences":{}})).preferences.sports ?? [];
+  const userPreferedTeams: number[] = JSON.parse(localStorage.getItem("userData") ?? JSON.stringify({"preferences":{}})).preferences.teams ?? [];
 
   try {
     dispatch({ type: "FETCH_TEAMS_REQUEST" });
     const response = await fetch(`${API_ENDPOINT}/teams`, {
       method: "GET",
       headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json"
       },
     });
     const data = await response.json();

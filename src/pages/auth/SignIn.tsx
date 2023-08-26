@@ -55,7 +55,9 @@ const SignIn: React.FC = () => {
     >
       <h2 className="font-space-grotesk font-bold text-5xl">
         Welcome back to <br />
-        <span className="text-sky-600">SportSync</span>
+        <Link to="/" className="text-sky-600">
+          SportSync
+        </Link>
       </h2>
       <p className="font-lexend-deca mt-3 mb-3 text-gray-600">
         Sign in to your account.
