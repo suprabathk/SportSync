@@ -52,8 +52,10 @@ const LiveNews = () => {
 
   return (
     <div>
-      <p className="font-bold text-2xl mb-1">Live News</p>
-      <div className="mb-1 custom-scrollbar -mr-4 sm:-mr-6 lg:-mr-8">
+      <p className="font-bold text-2xl mb-1 text-black dark:text-white">
+        Live News
+      </p>
+      <div className="mb-1 custom-scrollbar -mr-4 sm:-mr-6 lg:-mr-8 text-black dark:text-white">
         <p className="text-md font-medium mb-1">Filter by sport:</p>
         <div className="overflow-x-auto flex gap-2 items-center mb-1 pb-1">
           {sports.map((sport: Sport) =>
@@ -61,18 +63,18 @@ const LiveNews = () => {
               <div
                 onClick={() => toggleSport(sport.name)}
                 key={sport.id}
-                className="flex-shrink-0 cursor-pointer flex items-center gap-1 bg-sky-700 rounded-lg px-2 py-1 text-white text-sm"
+                className="flex-shrink-0 cursor-pointer flex items-center gap-1 bg-sky-700 rounded-lg px-2 py-1 text-white text-sm dark:bg-white dark:text-black"
               >
-                <span className="bg-white rounded-full p-1.5" />
+                <span className="bg-white rounded-full p-1.5 dark:bg-black" />
                 <span>{sport.name}</span>
               </div>
             ) : (
               <div
                 onClick={() => toggleSport(sport.name)}
                 key={sport.id}
-                className="flex-shrink-0 cursor-pointer flex items-center gap-1 border border-sky-600 rounded-lg px-2 py-1 text-sky-700 text-sm"
+                className="flex-shrink-0 cursor-pointer flex items-center gap-1 border border-sky-600 rounded-lg px-2 py-1 text-sky-700 text-sm dark:border-white dark:text-white"
               >
-                <span className="bg-sky-700 rounded-full p-1.5" />
+                <span className="bg-sky-700 rounded-full p-1.5 dark:bg-white" />
                 <span>{sport.name}</span>
               </div>
             )
@@ -80,7 +82,9 @@ const LiveNews = () => {
         </div>
       </div>
       <div className="mb-4 custom-scrollbar -mr-4 sm:-mr-6 lg:-mr-8">
-        <p className="text-md font-medium mb-1">Filter by team:</p>
+        <p className="text-md font-medium mb-1 text-black dark:text-white">
+          Filter by team:
+        </p>
         <div className="flex gap-2 items-center mb-3 overflow-x-auto pb-1">
           {teams
             .filter(
@@ -93,18 +97,18 @@ const LiveNews = () => {
                 <div
                   onClick={() => toggleTeam(team.id)}
                   key={team.id}
-                  className="flex-shrink-0 cursor-pointer flex items-center gap-1 bg-sky-700 rounded-lg px-2 py-1 text-white text-sm"
+                  className="flex-shrink-0 cursor-pointer flex items-center gap-1 bg-sky-700 rounded-lg px-2 py-1 text-white text-sm dark:bg-white dark:text-black"
                 >
-                  <span className="bg-white rounded-full p-1.5" />
+                  <span className="bg-white rounded-full p-1.5 dark:bg-black" />
                   <span>{team.name}</span>
                 </div>
               ) : (
                 <div
                   onClick={() => toggleTeam(team.id)}
                   key={team.id}
-                  className="flex-shrink-0 cursor-pointer flex items-center gap-1 border border-sky-600 rounded-lg px-2 py-1 text-sky-700 text-sm"
+                  className="flex-shrink-0 cursor-pointer flex items-center gap-1 border border-sky-600 rounded-lg px-2 py-1 text-sky-700 text-sm dark:border-white dark:text-white"
                 >
-                  <span className="bg-sky-700 rounded-full p-1.5" />
+                  <span className="bg-sky-700 rounded-full p-1.5 dark:bg-white" />
                   <span>{team.name}</span>
                 </div>
               )
@@ -121,7 +125,7 @@ const LiveNews = () => {
           [...Array(5).keys()].map((id) => (
             <div
               key={id}
-              className={`flex rounded-lg w-full bg-white border border-gray-200 shadow-md hover:shadow-xl transition-shadow h-24 animate-pulse duration-75`}
+              className={`flex rounded-lg w-full bg-white dark:bg-black border border-gray-200 shadow-md hover:shadow-xl transition-shadow h-24 animate-pulse duration-75`}
             />
           ))}
         {articles &&
@@ -148,7 +152,7 @@ const LiveNews = () => {
                 <Link
                   to={`/article/${article.id}`}
                   key={article.id}
-                  className="flex rounded-lg bg-white border border-gray-200 shadow-md hover:shadow-xl transition-shadow"
+                  className="flex rounded-lg bg-white dark:bg-black border border-gray-200 shadow-md hover:shadow-xl transition-shadow dark:border-neutral-600"
                 >
                   <img
                     className="w-32 rounded-l-lg object-cover h-auto"
@@ -156,16 +160,16 @@ const LiveNews = () => {
                     alt="thumbnail"
                   />
                   <div className="flex flex-col justify-start p-6">
-                    <p className="text-xs text-neutral-500">
+                    <p className="text-xs text-neutral-500 dark:text-neutral-200">
                       {article.sport.name}
                     </p>
-                    <h5 className="mt-2 text-xl font-semibold text-neutral-800">
+                    <h5 className="mt-2 text-xl font-semibold text-neutral-800 dark:text-white">
                       {article.title}
                     </h5>
-                    <p className="mb-4 text-sm text-neutral-600">
+                    <p className="mb-4 text-sm text-neutral-600 dark:text-neutral-200">
                       {article.summary}
                     </p>
-                    <div className="text-xs text-neutral-500 mb-1">
+                    <div className="text-xs text-neutral-500 mb-1 dark:text-neutral-200">
                       {article.teams.map((team, id) => (
                         <span key={id}>
                           <span>{team.name}</span>
@@ -173,7 +177,7 @@ const LiveNews = () => {
                         </span>
                       ))}
                     </div>
-                    <p className="text-xs text-neutral-500">
+                    <p className="text-xs text-neutral-500 dark:text-neutral-200">
                       {new Date(article.date).toDateString()}
                     </p>
                   </div>

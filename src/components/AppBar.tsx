@@ -26,10 +26,7 @@ const Appbar = () => {
 
   return (
     <>
-      <Disclosure
-        as="nav"
-        className="bg-sky-700 text-white dark:text-black dark:bg-white"
-      >
+      <Disclosure as="nav" className="bg-sky-700 text-white dark:bg-black">
         {() => (
           <div className="mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex h-16 items-center justify-between">
