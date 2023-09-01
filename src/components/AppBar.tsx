@@ -26,7 +26,10 @@ const Appbar = () => {
 
   return (
     <>
-      <Disclosure as="nav" className="bg-sky-700 text-white dark:bg-black">
+      <Disclosure
+        as="nav"
+        className="bg-sky-700 text-white dark:text-black dark:bg-white"
+      >
         {() => (
           <div className="mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex h-16 items-center justify-between">
@@ -45,7 +48,7 @@ const Appbar = () => {
                 )}
                 <Menu as="div" className="relative ml-3">
                   <div>
-                    <Menu.Button className="rounded-full p-1 text-white transition-colors">
+                    <Menu.Button className="rounded-full p-1 transition-colors">
                       <UserCircleIcon className="h-6 w-6" aria-hidden="true" />
                     </Menu.Button>
                   </div>
