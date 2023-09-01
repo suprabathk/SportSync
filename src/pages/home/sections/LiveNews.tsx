@@ -125,57 +125,70 @@ const LiveNews = () => {
             />
           ))}
         {articles &&
-          articles
-            .filter(
-              (article: ArticlePreview) =>
-                activeSports.length === 0 ||
-                activeSports.includes(article.sport.name)
-            )
-            .filter((article: ArticlePreview) => {
-              let flag = false;
-              for (const team of article.teams) {
-                if (activeTeams.includes(team.id)) {
-                  flag = true;
-                  break;
+          (() => {
+            const filteredArticles = articles
+              .filter(
+                (article: ArticlePreview) =>
+                  activeSports.length === 0 ||
+                  activeSports.includes(article.sport.name)
+              )
+              .filter((article: ArticlePreview) => {
+                let flag = false;
+                for (const team of article.teams) {
+                  if (activeTeams.includes(team.id)) {
+                    flag = true;
+                    break;
+                  }
                 }
-              }
-              return activeTeams.length === 0 || flag;
-            })
-            .map((article: ArticlePreview) => (
-              <Link
-                to={`/article/${article.id}`}
-                key={article.id}
-                className="flex rounded-lg bg-white border border-gray-200 shadow-md hover:shadow-xl transition-shadow"
-              >
-                <img
-                  className="w-32 rounded-l-lg object-cover h-auto"
-                  src={article.thumbnail}
-                  alt="thumbnail"
-                />
-                <div className="flex flex-col justify-start p-6">
-                  <p className="text-xs text-neutral-500">
-                    {article.sport.name}
-                  </p>
-                  <h5 className="mt-2 text-xl font-semibold text-neutral-800">
-                    {article.title}
-                  </h5>
-                  <p className="mb-4 text-sm text-neutral-600">
-                    {article.summary}
-                  </p>
-                  <div className="text-xs text-neutral-500 mb-1">
-                    {article.teams.map((team, id) => (
-                      <span key={id}>
-                        <span>{team.name}</span>
-                        {article.teams.length !== id + 1 && " VS "}
-                      </span>
-                    ))}
+                return activeTeams.length === 0 || flag;
+              });
+
+            return filteredArticles.length > 0 ? (
+              filteredArticles.map((article: ArticlePreview) => (
+                <Link
+                  to={`/article/${article.id}`}
+                  key={article.id}
+                  className="flex rounded-lg bg-white border border-gray-200 shadow-md hover:shadow-xl transition-shadow"
+                >
+                  <img
+                    className="w-32 rounded-l-lg object-cover h-auto"
+                    src={article.thumbnail}
+                    alt="thumbnail"
+                  />
+                  <div className="flex flex-col justify-start p-6">
+                    <p className="text-xs text-neutral-500">
+                      {article.sport.name}
+                    </p>
+                    <h5 className="mt-2 text-xl font-semibold text-neutral-800">
+                      {article.title}
+                    </h5>
+                    <p className="mb-4 text-sm text-neutral-600">
+                      {article.summary}
+                    </p>
+                    <div className="text-xs text-neutral-500 mb-1">
+                      {article.teams.map((team, id) => (
+                        <span key={id}>
+                          <span>{team.name}</span>
+                          {article.teams.length !== id + 1 && " VS "}
+                        </span>
+                      ))}
+                    </div>
+                    <p className="text-xs text-neutral-500">
+                      {new Date(article.date).toDateString()}
+                    </p>
                   </div>
-                  <p className="text-xs text-neutral-500">
-                    {new Date(article.date).toDateString()}
-                  </p>
-                </div>
-              </Link>
-            ))}
+                </Link>
+              ))
+            ) : (
+              <div className="text-center my-6">
+                <p>You have no updates currently :(</p>
+                <p className="text-gray-400">
+                  Please comeback later for latest updates about your favorite
+                  sports
+                </p>
+              </div>
+            );
+          })()}
       </div>
     </div>
   );
