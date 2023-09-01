@@ -13,7 +13,7 @@ function App() {
   return (
     <div
       className={`font-lexend-deca ${
-        theme === "dark" ? "dark" : ""
+        theme === "dark" && "dark"
       } transition-colors`}
     >
       <MatchesProvider>
