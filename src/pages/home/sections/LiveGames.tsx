@@ -32,7 +32,7 @@ const LiveGames = () => {
             <Link
               to={`/match/${match.id}`}
               key={match.id}
-              className="flex-shrink-0 bg-white p-3 rounded-md text-black dark:bg-black dark:text-white border border-neutral-600"
+              className="flex-shrink-0 bg-white p-3 rounded-md text-black dark:bg-black dark:text-white border dark:border-neutral-600"
             >
               <div className="flex justify-between items-center mb-3 gap-6">
                 <p className="text-sm dark:text-neutral-300">

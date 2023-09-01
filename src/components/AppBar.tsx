@@ -58,7 +58,7 @@ const Appbar = () => {
                     leaveFrom="transform opacity-100 scale-100"
                     leaveTo="transform opacity-0 scale-95"
                   >
-                    <Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none p-2 divide-y dark:bg-black dark:border dark:border-white text-black dark:text-white">
+                    <Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none p-2 divide-y dark:bg-black dark:border dark:border-neutral-600 text-black dark:text-white divide-neutral-300">
                       <div className="flex flex-col items-center justify-center my-2">
                         <span className="text-xl font-semibold">
                           {userData.name ?? "Guest"}
@@ -73,7 +73,7 @@ const Appbar = () => {
                           checked={enabled}
                           onChange={toggleTheme}
                           className={`${
-                            enabled ? "bg-slate-400" : "bg-slate-700"
+                            enabled ? "bg-neutral-500" : "bg-slate-700"
                           }
               relative inline-flex h-[18px] w-[40px] shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus-visible:ring-2  focus-visible:ring-white focus-visible:ring-opacity-75`}
                         >
