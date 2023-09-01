@@ -1,11 +1,13 @@
 import { Transition, Dialog } from "@headlessui/react";
-import { Fragment, useEffect, useState } from "react";
+import { Fragment, useContext, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { API_ENDPOINT } from "../../config/constants";
 import { CalendarDaysIcon } from "@heroicons/react/24/outline";
 import { ArticleDetails } from "../../types/types";
+import { ThemeContext } from "../../context/theme";
 
 const ArticleModal = () => {
+  const { theme } = useContext(ThemeContext);
   const [article, setArticle] = useState<ArticleDetails | undefined>(undefined);
   const [isOpen, setIsOpen] = useState(false);
   const { articleID } = useParams();
@@ -46,7 +48,11 @@ const ArticleModal = () => {
             <div className="fixed inset-0 bg-black bg-opacity-25" />
           </Transition.Child>
 
-          <div className="fixed inset-0 overflow-y-auto">
+          <div
+            className={`fixed inset-0 overflow-y-auto ${
+              theme === "dark" && "dark"
+            }`}
+          >
             <div className="flex min-h-full items-center justify-center p-4 text-center">
               <Transition.Child
                 as={Fragment}
@@ -57,7 +63,7 @@ const ArticleModal = () => {
                 leaveFrom="opacity-100 scale-100"
                 leaveTo="opacity-0 scale-95"
               >
-                <Dialog.Panel className="w-full max-w-2xl transform overflow-hidden rounded-2xl bg-sky-700 text-white text-left align-middle shadow-xl transition-all">
+                <Dialog.Panel className="w-full max-w-2xl transform overflow-hidden rounded-2xl bg-sky-700 dark:bg-black text-white text-left align-middle shadow-xl transition-all dark:border dark:border-neutral-600">
                   <div
                     className="p-6"
                     style={{
@@ -93,7 +99,7 @@ const ArticleModal = () => {
                       </div>
                     </div>
                   </div>
-                  <div className="bg-white p-6 text-black">
+                  <div className="bg-white p-6 text-black dark:bg-black dark:text-white">
                     <p className="font-bold text-lg">Story</p>
                     <p>{article?.content}</p>
                   </div>
