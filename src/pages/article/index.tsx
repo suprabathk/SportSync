@@ -1,5 +1,5 @@
 import { Transition, Dialog } from "@headlessui/react";
-import { Fragment, useEffect, useState } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { API_ENDPOINT } from "../../config/constants";
 import { CalendarDaysIcon } from "@heroicons/react/24/outline";
@@ -59,37 +59,40 @@ const ArticleModal = () => {
               >
                 <Dialog.Panel className="w-full max-w-2xl transform overflow-hidden rounded-2xl bg-sky-700 text-white text-left align-middle shadow-xl transition-all">
                   <div
-                    className="p-6"
-                    style={{
-                      background: `linear-gradient(rgba(0, 0, 0, 0.60), rgba(0, 0, 0, 0.60)), url(${article?.thumbnail})`,
-                      backgroundPosition: "center",
-                      backgroundSize: "cover",
-                      backgroundRepeat: "no-repeat",
-                    }}
+                    style={
+                      {
+                        "--image-url": `url(${article?.thumbnail})`,
+                      } as React.CSSProperties
+                    }
+                    className="bg-center bg-cover bg-no-repeat bg-[image:var(--image-url)]"
                   >
-                    <Dialog.Title
-                      as="h3"
-                      className="text-2xl font-bold leading-6 text-white mb-2"
-                    >
-                      {article?.title}
-                    </Dialog.Title>
-                    <p className="mb-4 text-sm">{article?.summary}</p>
-                    <div className="text-sm text-white mb-1">
-                      {article?.teams.map((team, id) => (
-                        <span key={id}>
-                          <span>{team.name}</span>
-                          {article.teams.length !== id + 1 && " VS "}
-                        </span>
-                      ))}
-                    </div>
-                    <div className="flex justify-between items-center mt-1 gap-6 ">
-                      <p className="text-sm font-bold">{article?.sport.name}</p>
-                      <div className="flex items-center text-sm gap-1">
-                        <CalendarDaysIcon className="w-4 h-4" />
-                        <p>
-                          {article?.date &&
-                            new Date(article.date).toDateString()}
+                    <div className="p-6 backdrop-brightness-50">
+                      <Dialog.Title
+                        as="h3"
+                        className="text-2xl font-bold leading-6 text-white mb-2"
+                      >
+                        {article?.title}
+                      </Dialog.Title>
+                      <p className="mb-4 text-sm">{article?.summary}</p>
+                      <div className="text-sm text-white mb-1">
+                        {article?.teams.map((team, id) => (
+                          <span key={id}>
+                            <span>{team.name}</span>
+                            {article.teams.length !== id + 1 && " VS "}
+                          </span>
+                        ))}
+                      </div>
+                      <div className="flex justify-between items-center mt-1 gap-6 ">
+                        <p className="text-sm font-bold">
+                          {article?.sport.name}
                         </p>
+                        <div className="flex items-center text-sm gap-1">
+                          <CalendarDaysIcon className="w-4 h-4" />
+                          <p>
+                            {article?.date &&
+                              new Date(article.date).toDateString()}
+                          </p>
+                        </div>
                       </div>
                     </div>
                   </div>
