@@ -70,7 +70,7 @@ const LiveNews = () => {
               <div
                 onClick={() => toggleSport(sport.name)}
                 key={sport.id}
-                className="flex-shrink-0 cursor-pointer flex items-center gap-1 bg-sky-700 rounded-lg px-2 py-1 text-white text-sm dark:bg-white dark:text-black"
+                className="select-none flex-shrink-0 cursor-pointer flex items-center gap-1 bg-sky-700 rounded-lg px-2 py-1 text-white text-sm dark:bg-white dark:text-black"
               >
                 <span className="bg-white rounded-full p-1.5 dark:bg-black" />
                 <span>{sport.name}</span>
@@ -79,7 +79,7 @@ const LiveNews = () => {
               <div
                 onClick={() => toggleSport(sport.name)}
                 key={sport.id}
-                className="flex-shrink-0 cursor-pointer flex items-center gap-1 border border-sky-600 rounded-lg px-2 py-1 text-sky-700 text-sm dark:border-neutral-300 dark:text-neutral-300"
+                className="select-none flex-shrink-0 cursor-pointer flex items-center gap-1 border border-sky-600 rounded-lg px-2 py-1 text-sky-700 text-sm dark:border-neutral-300 dark:text-neutral-300"
               >
                 <span className="bg-sky-700 rounded-full p-1.5 dark:bg-neutral-300" />
                 <span>{sport.name}</span>
@@ -108,7 +108,7 @@ const LiveNews = () => {
                 <div
                   onClick={() => toggleTeam(team.id)}
                   key={team.id}
-                  className="flex-shrink-0 cursor-pointer flex items-center gap-1 bg-sky-700 rounded-lg px-2 py-1 text-white text-sm dark:bg-white dark:text-black"
+                  className="select-none flex-shrink-0 cursor-pointer flex items-center gap-1 bg-sky-700 rounded-lg px-2 py-1 text-white text-sm dark:bg-white dark:text-black"
                 >
                   <span className="bg-white rounded-full p-1.5 dark:bg-black" />
                   <span>{team.name}</span>
@@ -117,7 +117,7 @@ const LiveNews = () => {
                 <div
                   onClick={() => toggleTeam(team.id)}
                   key={team.id}
-                  className="flex-shrink-0 cursor-pointer flex items-center gap-1 border border-sky-600 rounded-lg px-2 py-1 text-sky-700 text-sm dark:border-neutral-300 dark:text-neutral-300"
+                  className="select-none flex-shrink-0 cursor-pointer flex items-center gap-1 border border-sky-600 rounded-lg px-2 py-1 text-sky-700 text-sm dark:border-neutral-300 dark:text-neutral-300"
                 >
                   <span className="bg-sky-700 rounded-full p-1.5 dark:bg-neutral-300" />
                   <span>{team.name}</span>

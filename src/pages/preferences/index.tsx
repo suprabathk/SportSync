@@ -222,7 +222,7 @@ const PreferencesModal = () => {
                           <div
                             onClick={() => toggleSport(sport.name)}
                             key={sport.id}
-                            className="flex-shrink-0 cursor-pointer flex items-center gap-1 bg-sky-700 dark:bg-white rounded-lg px-2 py-1 text-white dark:text-black text-sm"
+                            className="select-none flex-shrink-0 cursor-pointer flex items-center gap-1 bg-sky-700 dark:bg-white rounded-lg px-2 py-1 text-white dark:text-black text-sm"
                           >
                             <span className="bg-white rounded-full p-1.5 dark:bg-black" />
                             <span>{sport.name}</span>
@@ -231,7 +231,7 @@ const PreferencesModal = () => {
                           <div
                             onClick={() => toggleSport(sport.name)}
                             key={sport.id}
-                            className="flex-shrink-0 cursor-pointer flex items-center gap-1 border border-sky-600 dark:border-neutral-200 rounded-lg px-2 py-1 text-sky-700 dark:text-neutral-200 text-sm"
+                            className="select-none flex-shrink-0 cursor-pointer flex items-center gap-1 border border-sky-600 dark:border-neutral-200 rounded-lg px-2 py-1 text-sky-700 dark:text-neutral-200 text-sm"
                           >
                             <span className="bg-sky-700 rounded-full p-1.5 dark:bg-neutral-200" />
                             <span>{sport.name}</span>
@@ -254,7 +254,7 @@ const PreferencesModal = () => {
                             <div
                               onClick={() => toggleTeam(team.id)}
                               key={team.id}
-                              className="flex-shrink-0 cursor-pointer flex items-center gap-1 bg-sky-700 dark:bg-white rounded-lg px-2 py-1 text-white dark:text-black text-sm"
+                              className="select-none flex-shrink-0 cursor-pointer flex items-center gap-1 bg-sky-700 dark:bg-white rounded-lg px-2 py-1 text-white dark:text-black text-sm"
                             >
                               <span className="bg-white rounded-full p-1.5 dark:bg-black" />
                               <span>{team.name}</span>
@@ -263,7 +263,7 @@ const PreferencesModal = () => {
                             <div
                               onClick={() => toggleTeam(team.id)}
                               key={team.id}
-                              className="flex-shrink-0 cursor-pointer flex items-center gap-1 border border-sky-600 dark:border-neutral-200 rounded-lg px-2 py-1 text-sky-700 dark:text-neutral-200 text-sm"
+                              className="select-none flex-shrink-0 cursor-pointer flex items-center gap-1 border border-sky-600 dark:border-neutral-200 rounded-lg px-2 py-1 text-sky-700 dark:text-neutral-200 text-sm"
                             >
                               <span className="bg-sky-700 rounded-full p-1.5 dark:bg-neutral-200" />
                               <span>{team.name}</span>

@@ -48,7 +48,7 @@ const Appbar = () => {
                   <span
                     aria-hidden="true"
                     className={`${enabled ? "translate-x-12" : "translate-x-0"}
-                pointer-events-none inline-block h-fit w-fit transform rounded-full pl-1.5 pr-2 bg-white text-black shadow-lg ring-0 transition duration-200 ease-in-out text-sm`}
+                pointer-events-none select-none inline-block h-fit w-fit transform rounded-full pl-1.5 pr-2 bg-white text-black shadow-lg ring-0 transition duration-200 ease-in-out text-sm`}
                   >
                     {enabled ? (
                       <div className="flex items-center gap-1">
