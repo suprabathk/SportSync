@@ -37,13 +37,27 @@ const Appbar = () => {
                   </Link>
                 </div>
               </div>
-              <div className="flex ml-4 items-center md:ml-6">
+              <div className="flex ml-4 items-center md:ml-6 gap-3">
+                <Switch
+                  checked={enabled}
+                  onChange={toggleTheme}
+                  className={`${enabled ? "bg-neutral-700" : "bg-slate-400"}
+              relative inline-flex h-fit w-[100px] shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus-visible:ring-2  focus-visible:ring-white focus-visible:ring-opacity-75`}
+                >
+                  <span
+                    aria-hidden="true"
+                    className={`${enabled ? "translate-x-12" : "translate-x-0"}
+                pointer-events-none inline-block h-fit w-fit transform rounded-full px-2 bg-white text-black shadow-lg ring-0 transition duration-200 ease-in-out text-sm`}
+                  >
+                    {enabled ? "Dark" : "Light"}
+                  </span>
+                </Switch>
                 {isAuth && (
                   <Link to="/preferences">
                     <Cog6ToothIcon className="h-6 w-6" />
                   </Link>
                 )}
-                <Menu as="div" className="relative ml-3">
+                <Menu as="div" className="relative">
                   <div>
                     <Menu.Button className="rounded-full p-1 transition-colors">
                       <UserCircleIcon className="h-6 w-6" aria-hidden="true" />
@@ -66,25 +80,6 @@ const Appbar = () => {
                         <span className="text-sm text-gray-500 dark:text-gray-400">
                           {userData.email ?? ""}
                         </span>
-                      </div>
-                      <div className="flex justify-between items-center py-1 px-3">
-                        <span className="font-normal text-md">Dark mode: </span>
-                        <Switch
-                          checked={enabled}
-                          onChange={toggleTheme}
-                          className={`${
-                            enabled ? "bg-neutral-500" : "bg-slate-700"
-                          }
-              relative inline-flex h-[18px] w-[40px] shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus-visible:ring-2  focus-visible:ring-white focus-visible:ring-opacity-75`}
-                        >
-                          <span
-                            aria-hidden="true"
-                            className={`${
-                              enabled ? "translate-x-5" : "translate-x-0"
-                            }
-                pointer-events-none inline-block h-[14px] w-[14px] transform rounded-full bg-white shadow-lg ring-0 transition duration-200 ease-in-out`}
-                          />
-                        </Switch>
                       </div>
                       {isAuth ? (
                         <>
