@@ -4,6 +4,7 @@ import { Cog6ToothIcon, UserCircleIcon } from "@heroicons/react/24/outline";
 import { ThemeContext } from "../context/theme";
 import { User } from "../types/types";
 import { Link } from "react-router-dom";
+import { MoonIcon, SunIcon } from "@heroicons/react/20/solid";
 
 const Appbar = () => {
   const { theme, setTheme } = useContext(ThemeContext);
@@ -42,14 +43,24 @@ const Appbar = () => {
                   checked={enabled}
                   onChange={toggleTheme}
                   className={`${enabled ? "bg-neutral-700" : "bg-slate-400"}
-              relative inline-flex h-fit w-[100px] shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus-visible:ring-2  focus-visible:ring-white focus-visible:ring-opacity-75`}
+              relative inline-flex h-fit w-[115px] shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-all duration-200 ease-in-out focus:outline-none focus-visible:ring-2  focus-visible:ring-white focus-visible:ring-opacity-75`}
                 >
                   <span
                     aria-hidden="true"
                     className={`${enabled ? "translate-x-12" : "translate-x-0"}
-                pointer-events-none inline-block h-fit w-fit transform rounded-full px-2 bg-white text-black shadow-lg ring-0 transition duration-200 ease-in-out text-sm`}
+                pointer-events-none inline-block h-fit w-fit transform rounded-full pl-1.5 pr-2 bg-white text-black shadow-lg ring-0 transition duration-200 ease-in-out text-sm`}
                   >
-                    {enabled ? "Dark" : "Light"}
+                    {enabled ? (
+                      <div className="flex items-center gap-1">
+                        <MoonIcon className="h-3 w-3" />
+                        <span>Dark</span>
+                      </div>
+                    ) : (
+                      <div className="flex items-center gap-1">
+                        <SunIcon className="h-4 w-4" />
+                        <span>Light</span>
+                      </div>
+                    )}
                   </span>
                 </Switch>
                 {isAuth && (
