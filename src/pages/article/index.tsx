@@ -27,6 +27,7 @@ const ArticleModal = () => {
 
   useEffect(() => {
     fetchArticle();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
@@ -56,32 +57,43 @@ const ArticleModal = () => {
                 leaveFrom="opacity-100 scale-100"
                 leaveTo="opacity-0 scale-95"
               >
-                <Dialog.Panel className="w-full max-w-2xl transform overflow-hidden rounded-2xl bg-sky-700 text-white p-6 text-left align-middle shadow-xl transition-all">
-                  <Dialog.Title
-                    as="h3"
-                    className="text-2xl font-bold leading-6 text-white mb-2"
+                <Dialog.Panel className="w-full max-w-2xl transform overflow-hidden rounded-2xl bg-sky-700 text-white text-left align-middle shadow-xl transition-all">
+                  <div
+                    className="p-6"
+                    style={{
+                      background: `linear-gradient(rgba(0, 0, 0, 0.60), rgba(0, 0, 0, 0.60)), url(${article?.thumbnail})`,
+                      backgroundPosition: "center",
+                      backgroundSize: "cover",
+                      backgroundRepeat: "no-repeat",
+                    }}
                   >
-                    {article?.title}
-                  </Dialog.Title>
-                  <p className="mb-4 text-sm">{article?.summary}</p>
-                  <div className="text-sm text-white mb-1">
-                    {article?.teams.map((team, id) => (
-                      <span key={id}>
-                        <span>{team.name}</span>
-                        {article.teams.length !== id + 1 && " VS "}
-                      </span>
-                    ))}
-                  </div>
-                  <div className="flex justify-between items-center mt-1 mb-3 gap-6 ">
-                    <p className="text-sm font-bold">{article?.sport.name}</p>
-                    <div className="flex items-center text-sm gap-1">
-                      <CalendarDaysIcon className="w-4 h-4" />
-                      <p>
-                        {article?.date && new Date(article.date).toDateString()}
-                      </p>
+                    <Dialog.Title
+                      as="h3"
+                      className="text-2xl font-bold leading-6 text-white mb-2"
+                    >
+                      {article?.title}
+                    </Dialog.Title>
+                    <p className="mb-4 text-sm">{article?.summary}</p>
+                    <div className="text-sm text-white mb-1">
+                      {article?.teams.map((team, id) => (
+                        <span key={id}>
+                          <span>{team.name}</span>
+                          {article.teams.length !== id + 1 && " VS "}
+                        </span>
+                      ))}
+                    </div>
+                    <div className="flex justify-between items-center mt-1 gap-6 ">
+                      <p className="text-sm font-bold">{article?.sport.name}</p>
+                      <div className="flex items-center text-sm gap-1">
+                        <CalendarDaysIcon className="w-4 h-4" />
+                        <p>
+                          {article?.date &&
+                            new Date(article.date).toDateString()}
+                        </p>
+                      </div>
                     </div>
                   </div>
-                  <div className="mt-4 bg-white -m-6 p-6 text-black">
+                  <div className="bg-white p-6 text-black">
                     <p className="font-bold text-lg">Story</p>
                     <p>{article?.content}</p>
                   </div>
