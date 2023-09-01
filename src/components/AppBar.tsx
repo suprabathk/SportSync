@@ -58,7 +58,7 @@ const Appbar = () => {
                     leaveFrom="transform opacity-100 scale-100"
                     leaveTo="transform opacity-0 scale-95"
                   >
-                    <Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none p-2 divide-y dark:bg-black dark:border dark:border-neutral-600 text-black dark:text-white divide-neutral-300">
+                    <Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none divide-y dark:bg-black dark:border dark:border-neutral-600 text-black dark:text-white dark:divide-neutral-600 divide-neutral-300">
                       <div className="flex flex-col items-center justify-center my-2">
                         <span className="text-xl font-semibold">
                           {userData.name ?? "Guest"}
@@ -67,7 +67,7 @@ const Appbar = () => {
                           {userData.email ?? ""}
                         </span>
                       </div>
-                      <div className="flex justify-between items-center py-2">
+                      <div className="flex justify-between items-center py-1 px-3">
                         <span className="font-normal text-md">Dark mode: </span>
                         <Switch
                           checked={enabled}
@@ -88,7 +88,7 @@ const Appbar = () => {
                       </div>
                       {isAuth ? (
                         <>
-                          <div className="text-center py-2">
+                          <div className="text-center p-1 font-normal">
                             <Link
                               to="/auth/signout"
                               className="hover:text-red-500 transition-colors"
@@ -96,7 +96,7 @@ const Appbar = () => {
                               Sign out
                             </Link>
                           </div>
-                          <div className="text-center py-2">
+                          <div className="text-center p-1 font-normal">
                             <Link
                               to="/reset-password"
                               className="hover:text-sky-600 transition-colors dark:hover:text-sky-300"
@@ -107,7 +107,7 @@ const Appbar = () => {
                         </>
                       ) : (
                         <>
-                          <div className="text-center py-2">
+                          <div className="text-center p-1 font-normal">
                             <Link
                               to="/auth/signin"
                               className="hover:text-sky-600 transition-colors dark:hover:text-sky-300"
@@ -115,7 +115,7 @@ const Appbar = () => {
                               Sign in
                             </Link>
                           </div>
-                          <div className="text-center py-2">
+                          <div className="text-center p-1 font-normal">
                             <Link
                               to="/auth/signup"
                               className="hover:text-sky-600 transition-colors dark:hover:text-sky-300"
