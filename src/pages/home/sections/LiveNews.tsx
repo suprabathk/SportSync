@@ -101,7 +101,8 @@ const LiveNews = () => {
             .filter(
               (team: Team) =>
                 activeSports.length === 0 ||
-                activeSports.includes(team.plays ?? "")
+                activeSports.includes(team.plays ?? "") ||
+                activeTeams.includes(team.id)
             )
             .map((team: Team) =>
               activeTeams.includes(team.id) ? (

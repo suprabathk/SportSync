@@ -247,7 +247,8 @@ const PreferencesModal = () => {
                         .filter(
                           (team: Team) =>
                             userPreferences.sports.length === 0 ||
-                            userPreferences.sports.includes(team.plays ?? "")
+                            userPreferences.sports.includes(team.plays ?? "") ||
+                            userPreferences.teams.includes(team.id)
                         )
                         .map((team: Team) =>
                           userPreferences.teams.includes(team.id) ? (
