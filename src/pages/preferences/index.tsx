@@ -1,5 +1,5 @@
 import { Transition, Dialog } from "@headlessui/react";
-import { Fragment, useEffect, useState } from "react";
+import { Fragment, useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { API_ENDPOINT } from "../../config/constants";
 import { Sport, Team, UserPreferences } from "../../types/types";
@@ -12,8 +12,10 @@ import { fetchArticles } from "../../context/articles/actions";
 import { fetchMatches } from "../../context/matches/actions";
 import { fetchSports } from "../../context/sports/actions";
 import { fetchTeams } from "../../context/teams/actions";
+import { ThemeContext } from "../../context/theme";
 
 const PreferencesModal = () => {
+  const { theme } = useContext(ThemeContext);
   const [sports, setSports] = useState<Sport[]>([]);
   const [teams, setTeams] = useState<Team[]>([]);
   const [userPreferences, setUserPreferences] = useState<UserPreferences>({
@@ -176,7 +178,11 @@ const PreferencesModal = () => {
             <div className="fixed inset-0 bg-black bg-opacity-25" />
           </Transition.Child>
 
-          <div className="fixed inset-0 overflow-y-auto">
+          <div
+            className={`fixed inset-0 overflow-y-auto ${
+              theme === "dark" && "dark"
+            }`}
+          >
             <div className="flex min-h-full items-center justify-center p-4 text-center">
               <Transition.Child
                 as={Fragment}
@@ -187,17 +193,17 @@ const PreferencesModal = () => {
                 leaveFrom="opacity-100 scale-100"
                 leaveTo="opacity-0 scale-95"
               >
-                <Dialog.Panel className="w-full max-w-2xl transform overflow-hidden rounded-2xl bg-sky-700 text-white p-6 text-left align-middle shadow-xl transition-all">
+                <Dialog.Panel className="w-full max-w-2xl transform overflow-hidden rounded-2xl bg-sky-700 text-white p-6 text-left align-middle shadow-xl transition-all dark:bg-white dark:text-black dark:border dark:border-neutral-600">
                   <div className="flex justify-between items-center">
                     <Dialog.Title
                       as="h3"
-                      className="text-2xl font-bold leading-6 text-white mb-2"
+                      className="text-2xl font-bold leading-6 mb-2"
                     >
                       Preferences
                     </Dialog.Title>
                     <button
                       onClick={updatePreferences}
-                      className="bg-white rounded-md px-2 py-1 text-sky-700 flex items-center gap-1"
+                      className="bg-white dark:bg-black rounded-md px-2 py-1 text-sky-700 dark:text-neutral-100 flex items-center gap-1"
                     >
                       <BookmarkIcon className="h-4 w-4" />
                       <span className="font-semibold">Save</span>
@@ -206,7 +212,7 @@ const PreferencesModal = () => {
                   <p className="mb-4 text-sm">
                     Select your favourite sports and teams for tailored feed.
                   </p>
-                  <div className="mt-4 bg-white -m-6 p-6 text-black">
+                  <div className="mt-4 bg-white -m-6 p-6 text-black dark:bg-black dark:text-white">
                     <p className="font-medium text-lg mb-1">
                       Select your favorite sports
                     </p>
@@ -216,18 +222,18 @@ const PreferencesModal = () => {
                           <div
                             onClick={() => toggleSport(sport.name)}
                             key={sport.id}
-                            className="flex-shrink-0 cursor-pointer flex items-center gap-1 bg-sky-700 rounded-lg px-2 py-1 text-white text-sm"
+                            className="flex-shrink-0 cursor-pointer flex items-center gap-1 bg-sky-700 dark:bg-white rounded-lg px-2 py-1 text-white dark:text-black text-sm"
                           >
-                            <span className="bg-white rounded-full p-1.5" />
+                            <span className="bg-white rounded-full p-1.5 dark:bg-black" />
                             <span>{sport.name}</span>
                           </div>
                         ) : (
                           <div
                             onClick={() => toggleSport(sport.name)}
                             key={sport.id}
-                            className="flex-shrink-0 cursor-pointer flex items-center gap-1 border border-sky-600 rounded-lg px-2 py-1 text-sky-700 text-sm"
+                            className="flex-shrink-0 cursor-pointer flex items-center gap-1 border border-sky-600 dark:border-neutral-200 rounded-lg px-2 py-1 text-sky-700 dark:text-neutral-200 text-sm"
                           >
-                            <span className="bg-sky-700 rounded-full p-1.5" />
+                            <span className="bg-sky-700 rounded-full p-1.5 dark:bg-neutral-200" />
                             <span>{sport.name}</span>
                           </div>
                         )
@@ -248,18 +254,18 @@ const PreferencesModal = () => {
                             <div
                               onClick={() => toggleTeam(team.id)}
                               key={team.id}
-                              className="flex-shrink-0 cursor-pointer flex items-center gap-1 bg-sky-700 rounded-lg px-2 py-1 text-white text-sm"
+                              className="flex-shrink-0 cursor-pointer flex items-center gap-1 bg-sky-700 dark:bg-white rounded-lg px-2 py-1 text-white dark:text-black text-sm"
                             >
-                              <span className="bg-white rounded-full p-1.5" />
+                              <span className="bg-white rounded-full p-1.5 dark:bg-black" />
                               <span>{team.name}</span>
                             </div>
                           ) : (
                             <div
                               onClick={() => toggleTeam(team.id)}
                               key={team.id}
-                              className="flex-shrink-0 cursor-pointer flex items-center gap-1 border border-sky-600 rounded-lg px-2 py-1 text-sky-700 text-sm"
+                              className="flex-shrink-0 cursor-pointer flex items-center gap-1 border border-sky-600 dark:border-neutral-200 rounded-lg px-2 py-1 text-sky-700 dark:text-neutral-200 text-sm"
                             >
-                              <span className="bg-sky-700 rounded-full p-1.5" />
+                              <span className="bg-sky-700 rounded-full p-1.5 dark:bg-neutral-200" />
                               <span>{team.name}</span>
                             </div>
                           )
