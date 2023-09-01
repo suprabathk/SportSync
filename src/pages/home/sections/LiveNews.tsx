@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { ArticlePreview, Sport, Team } from "../../../types/types";
 import { useArticlesState } from "../../../context/articles/context";
 import { Link } from "react-router-dom";
@@ -6,7 +7,6 @@ import { useState } from "react";
 import { useTeamsState } from "../../../context/teams/context";
 
 const LiveNews = () => {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const articlesState: any = useArticlesState();
   const sportsState: any = useSportsState();
   const teamsState: any = useTeamsState();
@@ -133,7 +133,7 @@ const LiveNews = () => {
             )
             .filter((article: ArticlePreview) => {
               let flag = false;
-              for (let team of article.teams) {
+              for (const team of article.teams) {
                 if (activeTeams.includes(team.id)) {
                   flag = true;
                   break;
