@@ -10,6 +10,7 @@ import { ThemeContext } from "../../context/theme";
 const MatchModal = () => {
   const { theme } = useContext(ThemeContext);
   const [match, setMatch] = useState<MatchDetails | undefined>(undefined);
+  const [fetchingScores, setFetchingScores] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const { matchID } = useParams();
   const navigate = useNavigate();
@@ -19,17 +20,18 @@ const MatchModal = () => {
     navigate("../../");
   }
 
-  const fetchMatch = () => {
-    fetch(`${API_ENDPOINT}/matches/${matchID}`)
+  const fetchMatch = async () => {
+    setFetchingScores(true);
+    await fetch(`${API_ENDPOINT}/matches/${matchID}`)
       .then((res) => res.json())
       .then((data) => {
         setMatch(data);
-        setIsOpen(true);
+        setFetchingScores(false);
       });
   };
 
   useEffect(() => {
-    fetchMatch();
+    fetchMatch().then(() => setIsOpen(true));
   }, []);
 
   return (
@@ -98,7 +100,11 @@ const MatchModal = () => {
                     <div className="flex gap-2 items-center">
                       <p className="font-bold text-lg">Scores</p>
                       <button onClick={fetchMatch}>
-                        <ArrowPathIcon className="w-4 h-4" />
+                        <ArrowPathIcon
+                          className={`w-4 h-4 ${
+                            fetchingScores && "rotate-180"
+                          } transition-all`}
+                        />
                       </button>
                     </div>
                     <div className="ml-4">
