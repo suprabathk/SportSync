@@ -197,7 +197,9 @@ const LiveNews = () => {
               ))
             ) : (
               <div className="text-center my-6">
-                <p>You have no updates currently :(</p>
+                <p className="text-black dark:text-white">
+                  You have no updates currently :(
+                </p>
                 <p className="text-gray-400">
                   Please comeback later for latest updates about your favorite
                   sports
