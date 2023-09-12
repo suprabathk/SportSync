@@ -1,27 +1,46 @@
-# React + TypeScript + Vite
+# SportSync
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Get live scores and latest news about Cricket, Football and all your favorite sports.  
+Tailor-made feed for you to stay updated about the sports and teams you admire.  
+Built using React JS, TailwindCSS.  
 
-Currently, two official plugins are available:
+## Try it 🌏
+Deployment: [sportsync.netlify.app](https://sportsync.netlify.app)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Run Locally
 
-## Expanding the ESLint configuration
+Clone the project ⏬
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
-```js
-   parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-   },
+```bash
+  git clone https://github.com/suprabathk/SportSync
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+Go to the project directory 📂
+
+```bash
+  cd SportSync
+```
+
+Install dependencies 📦
+
+```bash
+  npm install
+```
+
+Start the server ⚙️
+
+```bash
+  npm run dev
+```
+
+## Screenshots
+<img width="960" alt="signin" src="https://github.com/suprabathk/SportSync/assets/34211797/efdce382-3947-4b21-a7ae-539b659a7827">
+<img width="960" alt="home-light" src="https://github.com/suprabathk/SportSync/assets/34211797/abb109dd-6c51-4f7e-8594-e63af17bf2d9">
+<img width="960" alt="home-dark" src="https://github.com/suprabathk/SportSync/assets/34211797/6442149f-a979-4433-b163-3f381b902437">
+<img width="960" alt="match-light" src="https://github.com/suprabathk/SportSync/assets/34211797/dd2286a4-e710-4ece-ab58-be171690f0d5">
+<img width="960" alt="match-dark" src="https://github.com/suprabathk/SportSync/assets/34211797/52027271-55ed-4a9d-b052-6fb3a81a8bd3">
+<img width="960" alt="article-light" src="https://github.com/suprabathk/SportSync/assets/34211797/c3ec3b26-d462-4e25-af84-0fd3775df6d6">
+<img width="960" alt="article-dark" src="https://github.com/suprabathk/SportSync/assets/34211797/d126cbc3-3e74-4111-b938-640723d4331e">
+<img width="960" alt="preferences-light" src="https://github.com/suprabathk/SportSync/assets/34211797/4fdf20b8-acb1-4835-878d-9ee99210333e">
+<img width="960" alt="preferences-dark" src="https://github.com/suprabathk/SportSync/assets/34211797/413dafbd-4420-4002-a4b3-c07197cf2f35">
+
