@@ -33,6 +33,10 @@ Start the server ⚙️
   npm run dev
 ```
 
+## Recordings
+Application demonstration: [https://www.loom.com/share/24ebc996bce34027ba3bcd1c39b06ea9](https://www.loom.com/share/24ebc996bce34027ba3bcd1c39b06ea9)
+
+
 ## Screenshots
 <img width="960" alt="signin" src="https://github.com/suprabathk/SportSync/assets/34211797/efdce382-3947-4b21-a7ae-539b659a7827">
 <img width="960" alt="home-light" src="https://github.com/suprabathk/SportSync/assets/34211797/2c7bd36c-c351-4af6-95cd-7e36bf2af91f">
