@@ -37,7 +37,7 @@ const LiveGames = () => {
           ))}
         {previewMatches.length > 0 &&
           previewMatches.map((match: MatchPreview) => (
-            <LiveCard matchID={match.id} />
+            <LiveCard matchID={match.id} key={match.id} />
           ))}
         {allMatches.length > 0 &&
           allMatches.map((match: MatchPreview) => (
